@@ -1,0 +1,64 @@
+<ruleset name="sumanta23 rule set">
+	<description>
+		sumanta23 pmd rule set
+	</description>
+	<rule ref="rulesets/java/finalizers.xml/AvoidCallingFinalize" /><!--Mandatory -->
+	<rule ref="rulesets/java/imports.xml/DontImportJavaLang" /><!-- Mandatory -->
+	<rule ref="rulesets/java/naming.xml/AvoidDollarSigns" /><!-- Mandatory -->
+	<rule ref="rulesets/java/naming.xml/MethodWithSameNameAsEnclosingClass" /><!-- Mandatory -->
+	<rule ref="rulesets/java/unusedcode.xml/UnusedModifier" /><!-- Mandatory -->
+	<rule ref="rulesets/java/basic.xml/ReturnFromFinallyBlock" /><!-- Mandatory -->
+	<rule ref="rulesets/java/imports.xml/UnusedImports" /><!-- Mandatory -->
+	<rule ref="rulesets/java/imports.xml/ImportFromSamePackage" /><!-- Mandatory -->
+	<rule ref="rulesets/java/imports.xml/DuplicateImports" /><!-- Mandatory -->
+	<rule ref="rulesets/java/basic.xml/UnnecessaryConversionTemporary" /><!-- Mandatory -->
+	<rule ref="rulesets/java/controversial.xml/UnnecessaryConstructor" /><!-- Mandatory -->
+	<rule ref="rulesets/java/finalizers.xml/FinalizeShouldBeProtected" /><!-- Mandatory -->
+	<rule ref="rulesets/java/controversial.xml/DontImportSun" /><!-- Mandatory -->
+	<rule ref="rulesets/java/design.xml/AvoidProtectedFieldInFinalClass" /><!-- Mandatory -->
+	<rule ref="rulesets/java/design.xml/CloseResource" /><!-- Mandatory -->
+	<rule ref="rulesets/java/finalizers.xml/FinalizeDoesNotCallSuperFinalize" /><!-- Mandatory -->
+	<rule ref="rulesets/java/naming.xml/ClassNamingConventions" /><!-- Mandatory -->
+	<rule ref="rulesets/java/braces.xml/ForLoopsMustUseBraces" /><!-- Mandatory -->
+	<rule ref="rulesets/java/unusedcode.xml/UnusedLocalVariable" /><!-- Mandatory -->
+	<rule ref="rulesets/java/basic.xml/OverrideBothEqualsAndHashcode" /><!-- Mandatory -->
+	<rule ref="rulesets/java/unusedcode.xml/UnusedPrivateMethod" /><!-- Mandatory -->
+	<rule ref="rulesets/java/braces.xml/IfStmtsMustUseBraces" /><!-- Mandatory -->
+	<rule ref="rulesets/java/braces.xml/IfElseStmtsMustUseBraces" /><!-- Mandatory -->
+	<rule ref="rulesets/java/braces.xml/WhileLoopsMustUseBraces" /><!-- Mandatory -->
+	<rule ref="rulesets/java/unusedcode.xml/UnusedPrivateField" /><!-- Mandatory but watch -->
+	<rule ref="rulesets/java/design.xml/SimplifyBooleanExpressions" /><!-- Mandatory -->
+	<rule ref="rulesets/java/design.xml/SimplifyBooleanReturns" /><!-- Mandatory -->
+	<rule ref="rulesets/java/unusedcode.xml/UnusedFormalParameter" /><!-- Mandatory -->
+	<rule ref="rulesets/java/optimizations.xml/LocalVariableCouldBeFinal" /><!-- Mandatory -->
+	<rule ref="rulesets/java/optimizations.xml/MethodArgumentCouldBeFinal" /><!-- Mandatory -->
+	<rule ref="rulesets/java/naming.xml/SuspiciousConstantFieldName" /><!-- Mandatory -->
+	<rule ref="rulesets/java/strings.xml/StringInstantiation" /><!-- Mandatory -->
+	<rule ref="rulesets/java/design.xml/FinalFieldCouldBeStatic" /><!-- Mandatory -->
+	<rule ref="rulesets/java/design.xml/InstantiationToGetClass" /><!-- Mandatory -->
+	<rule ref="rulesets/java/design.xml/ImmutableField" /><!-- Mandatory -->
+	<rule ref="rulesets/java/codesize.xml">
+	<!-- Disabled these code size rules -->
+		<exclude name="CyclomaticComplexity" />
+		<exclude name="NPathComplexity" />
+		<exclude name="TooManyMethods" />
+	</rule><!-- Increased to 50 -->
+	<rule ref="rulesets/java/codesize.xml/TooManyMethods">
+		<properties>
+			<property name="maxmethods" value="50" />
+		</properties>
+	</rule>
+	<rule ref="rulesets/java/design.xml/ConstructorCallsOverridableMethod" /><!--Mandatory but watch -->
+	<rule ref="rulesets/java/coupling.xml/LooseCoupling" /><!-- Advisatory but watch -->
+	<rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects" /><!-- Mandatory but watch -->
+	<rule ref="rulesets/java/strictexception.xml/AvoidCatchingThrowable" /><!-- Advisatory -->
+	<rule ref="rulesets/java/strictexception.xml/SignatureDeclareThrowsException" /><!--Mandatory -->
+	<rule ref="rulesets/java/design.xml/AvoidInstanceofChecksInCatchClause" /><!--	Mandatory -->
+	<rule ref="rulesets/java/strictexception.xml/ExceptionAsFlowControl" /><!-- Mandatory -->
+	<rule ref="rulesets/java/strictexception.xml/AvoidThrowingRawExceptionTypes" /><!-- Mandatory -->
+	<rule ref="rulesets/java/strictexception.xml/AvoidThrowingNullPointerException" /><!--Mandatory --><!-- JEE -->
+	<rule ref="rulesets/java/j2ee.xml/UseProperClassLoader" /><!-- new 	rule, mandatory but watch -->
+	<rule ref="rulesets/java/j2ee.xml/DoNotCallSystemExit" /><!-- new rule,	mandatory but watch -->
+	<rule ref="rulesets/java/j2ee.xml/StaticEJBFieldShouldBeFinal" /><!-- new rule, mandatory but watch -->
+	<rule ref="rulesets/java/j2ee.xml/DoNotUseThreads" /><!-- new rule, mandatory but watch -->
+</ruleset>

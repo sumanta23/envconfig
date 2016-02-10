@@ -1,0 +1,36 @@
+[user]
+    name = sumanta23
+    email = nandisumanta0@gmail.com
+[core]
+    excludesfile = ~/.gitignore
+    autocrlf = false
+    safecrlf = true
+    eol = lf
+[color]
+    ui = true
+[gui]
+    encoding = utf-8
+[diff]
+    tool = vimdiff 
+[difftool]
+    prompt = false
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    prompt = false    
+[push]
+    default = tracking
+[color "diff"]
+    meta = blue black bold
+[alias]
+    st = status
+    lg = log --graph --pretty=format:'%C(green)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)<%an>%Creset' --abbrev-commit --date=relative
+    lh = log --graph --oneline --decorate --all
+    lc = diff-tree --no-commit-id --name-only -r
+    co = checkout
+    br = branch
+    gdiff = difftool --tool=vimdiff
+    hub = !git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
+[credential]
+    helper = cache --timeout=3600

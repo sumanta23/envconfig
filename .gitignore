@@ -1,0 +1,57 @@
+# java related
+################
+**/.settings/
+.project
+.classpath
+**/target/
+/bin
+**/bin
+.pmd
+.idea
+**.iml
+**/.idea
+/test.log
+**/build
+.gitignore
+log.txt
+*.log
+*.patch
+
+
+# python related
+#################
+__pycache__/
+*.py[cod]
+*$py.class
+
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+
+# Nodejs
+###############
+node_modules
+
+
+# Unit test / coverage reports
+##############################
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover

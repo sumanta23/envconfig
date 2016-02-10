@@ -1,0 +1,18 @@
+startup_message off
+setenv CSX_USE_SCREEN no
+term vt100
+-s bash
+defscrollback 5000
+# numpad tweak
+termcapinfo screen* ks@:ke@
+vbell off
+escape ^Gg
+bindkey ^[[C next
+bindkey ^[[D prev
+
+hardstatus alwayslastline "%{.bW} %-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
+
+term screen-256color
+
+# detach on hangup
+autodetach on
