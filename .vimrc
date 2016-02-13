@@ -15,6 +15,14 @@ autocmd! bufwritepost .vimrc source %
 
  " let Vundle manage Vundle, required
  Plugin 'VundleVim/Vundle.vim'
+ Plugin 'mileszs/ack.vim'
+ Plugin 'MarcWeber/vim-addon-mw-utils'
+ Plugin 'tomtom/tlib_vim'
+ Plugin 'garbas/vim-snipmate'
+
+ " Optional:
+ Plugin 'honza/vim-snippets'
+
 
  " The following are examples of different formats supported.
  " Keep Plugin commands between vundle#begin/end.
