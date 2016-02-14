@@ -224,6 +224,11 @@ let g:mapleader = ","
 nmap <leader>w :w!<cr>
 " Fast quit
 nmap <leader>q :qa!<cr>
+" Fast quit buffer
+nmap <leader>z :Bclose<cr>
+" Close all the buffers
+map <leader>ba :1,1000 bd!<cr>
+
 
 
  " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
@@ -311,11 +316,6 @@ map <C-l> <C-W>l
 map <C-\> <C-W>s
 map <leader>\ <C-W>v
 
-" Close the current buffer
-map <leader>bd :Bclose<cr>
-
-" Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
 
 " optimize
 " Useful mappings for managing tabs
