@@ -295,8 +295,8 @@ nnoremap <leader>-   :tabclose<CR>
 inoremap <leader>-   <Esc>:tabclose<CR>
 
 " switch buffers back and forth
-map <Leader>j :bn<CR>
-map <Leader>k :bp<CR>
+map <C-k> :bn<CR>
+map <C-j> :bp<CR>
 
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
@@ -307,10 +307,10 @@ map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>h <C-W>h
+map <leader>l <C-W>l
 
 " splitting window
 map <C-\> <C-W>s
@@ -487,6 +487,7 @@ let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$',
 
 
 "configure ctrlp.vim
+nnoremap <leader>p :CtrlPMixed<CR>
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMRUFiles<CR>
