@@ -47,7 +47,7 @@ fi
 
 # Returns "*" if the current git branch is dirty.
 function evil_git_dirty {
-      [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
+      [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "⚡"
 }
 
 # colored GCC warnings and errors
