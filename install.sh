@@ -15,7 +15,7 @@ ln -s ~/.vim/.tmux.conf ~/.tmux.conf
 ln -s ~/.vim/.gtkrc-2.0 ~/.gtkrc-2.0
 ln -s ~/.vim/settings.xml ~/.m2/settings.xml
 ln -s ~/.vim/pmdrules.xml ~/.m2/pmdrules.xml
-
+ln -s ~/.vim/i3config ~/.config/i3/config
 
 
 #install pathogen
