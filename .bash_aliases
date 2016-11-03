@@ -10,6 +10,7 @@ export GRADLE_HOME=$SW_HOME/gradle-2.3
 export SUBLIME_HOME=$SW_HOME/sublime_test_3
 PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin:$SUBLIME_HOME:$PATH
 
+source /usr/share/git/git-prompt.sh
 
 # install nvm in path
 if [ -f ~/.nvm/nvm.sh ]; then
