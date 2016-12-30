@@ -5,18 +5,18 @@ echo "install https://github.com/Anthony25/gnome-terminal-colors-solarized.git m
 #create folders
 mkdir -p ~/.m2 ~/.vim/.vimtemp/swaps ~/.vim/.vimtemp/backups ~/.vim/.vimtemp/undo
 
-ln -s ~/.vim/.bashrc ~/.bashrc
-ln -s ~/.vim/.bash_aliases ~/.bash_aliases
-ln -s ~/.vim/.vimrc ~/.vimrc
-ln -s ~/.vim/.gitconfig ~/.gitconfig
-ln -s ~/.vim/.gitignore ~/.gitignore
-ln -s ~/.vim/.screenrc ~/.screenrc
-ln -s ~/.vim/.tmux.conf ~/.tmux.conf
-ln -s ~/.vim/.gtkrc-2.0 ~/.gtkrc-2.0
-ln -s ~/.vim/settings.xml ~/.m2/settings.xml
-ln -s ~/.vim/pmdrules.xml ~/.m2/pmdrules.xml
-ln -s ~/.vim/i3config ~/.config/i3/config
-ln -s ~/.vim/flat-theme ~/.themes/flat
+ln -s ~/setup/.bashrc ~/.bashrc
+ln -s ~/setup/.bash_aliases ~/.bash_aliases
+ln -s ~/setup/.vimrc ~/.vimrc
+ln -s ~/setup/.gitconfig ~/.gitconfig
+ln -s ~/setup/.gitignore ~/.gitignore
+ln -s ~/setup/.screenrc ~/.screenrc
+ln -s ~/setup/.tmux.conf ~/.tmux.conf
+ln -s ~/setup/.gtkrc-2.0 ~/.gtkrc-2.0
+ln -s ~/setup/settings.xml ~/.m2/settings.xml
+ln -s ~/setup/pmdrules.xml ~/.m2/pmdrules.xml
+ln -s ~/setup/i3config ~/.config/i3/config
+ln -s ~/setup/flat-theme ~/.themes/flat
 
 #install pathogen
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
