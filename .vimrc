@@ -19,6 +19,8 @@ autocmd! bufwritepost .vimrc source %
  Plugin 'MarcWeber/vim-addon-mw-utils'
  Plugin 'tomtom/tlib_vim'
  Plugin 'garbas/vim-snipmate'
+ Plugin 'scrooloose/nerdcommenter'
+ Plugin 'Yggdroot/indentLine'
 
  " Optional:
  Plugin 'honza/vim-snippets'
@@ -126,6 +128,7 @@ set t_vb=
 set tm=500
 
 set number
+set relativenumber
 
 colorscheme desert
 set background=dark
@@ -509,28 +512,13 @@ vnoremap <Leader>a :Tabularize /
 "configure Ctags
 set tags=./tags;/,~/.vimtags
 
-" Make tags placed in .git/tags file available in all levels of a repository
-let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-if gitroot != ''
-    let &tags = &tags . ',' . gitroot . '/.git/tags'
-endif
-
-
 
 "configure tagbar
 nmap <F8>  :Tagbar<CR>
 
 
-
-
-
 if has('gui_running')
     set guioptions-=T
-    set background=dark
-    colorscheme solarized
-else
-    let g:solarized_termcolors=16
-    syntax on
     set background=dark
     colorscheme solarized
 endif
