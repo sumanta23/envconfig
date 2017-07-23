@@ -1,9 +1,12 @@
 #!/usr/local/env bash
 
+export TERM=xterm-256color
+
 export EDITOR=vim
-export SW_HOME=/opt/sw
+export SW_HOME=/home/sam/sw
 #Set env variables
-export JAVA_HOME=$SW_HOME/jdk1.8.0_45
+export JAVA_HOME=$SW_HOME/jdk1.8.0_60
+#export JAVA_HOME=$SW_HOME/jdk-9
 export M2_HOME=$SW_HOME/apache-maven-3.3.3
 export ANT_HOME=$SW_HOME/apache-ant-1.9.4
 export GRADLE_HOME=$SW_HOME/gradle-2.3
@@ -17,13 +20,19 @@ if [ -f ~/.nvm/nvm.sh ]; then
     . ~/.nvm/nvm.sh
 fi
 
+alias ll='ls -alF'
+alias g='git'
+alias youtube='youtube-dl --extract-audio --audio-format mp3'
 
 # Set Alias Commands
-alias vi="vim"
 alias arq='mvn clean install -Pjboss_managed_local | tee /tmp/log.txt'
 alias junit='mvn clean install | tee /tmp/log.txt'
 alias findtxt='grep -rnw . -e'
+alias j9='~/sw/jdk-9/bin/jshell'
+alias gstd="git stash show -p"
 alias gvim="gvim 2>/dev/null"
+alias monitor='xrandr --output VGA1 --auto --right-of LVDS1'
+alias primary='xrandr --output VGA1 --off'
 
 #battery Status
 alias power='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | grep -oE "[0-9]{1,3}%"'
@@ -37,4 +46,7 @@ function createCtags(){
 alias ctag=createCtags
 
 
-eval `dircolors ~/.vim/dircolors.256dark`
+export PRIVATE_BIN=~/private.bin
+PATH=$PRIVATE_BIN:$PATH
+
+eval `dircolors ~/envconfig/dircolors.256dark`
