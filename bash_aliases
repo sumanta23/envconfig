@@ -3,7 +3,7 @@
 export EDITOR=vim
 export SW_HOME=/opt/sw
 #Set env variables
-export JAVA_HOME=$SW_HOME/jdk1.7.0_75
+export JAVA_HOME=$SW_HOME/jdk1.8.0_45
 export M2_HOME=$SW_HOME/apache-maven-3.3.3
 export ANT_HOME=$SW_HOME/apache-ant-1.9.4
 export GRADLE_HOME=$SW_HOME/gradle-2.3
@@ -19,6 +19,7 @@ fi
 
 
 # Set Alias Commands
+alias vi="vim"
 alias arq='mvn clean install -Pjboss_managed_local | tee /tmp/log.txt'
 alias junit='mvn clean install | tee /tmp/log.txt'
 alias findtxt='grep -rnw . -e'

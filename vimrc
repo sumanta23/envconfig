@@ -24,6 +24,7 @@ autocmd! bufwritepost .vimrc source %
 
  " Optional:
  Plugin 'honza/vim-snippets'
+ Plugin 'jlanzarotta/bufexplorer'
 
 
  " The following are examples of different formats supported.
@@ -127,10 +128,12 @@ set novisualbell
 set t_vb=
 set tm=500
 
+set relativenumber
 set number
 set relativenumber
 
-colorscheme desert
+syntax on
+colorscheme darkblue
 set background=dark
 
 " Use spaces instead of tabs
@@ -186,6 +189,17 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
+" Code folding options
+nmap <leader>0 :set foldlevel=0<CR>
+nmap <leader>1 :set foldlevel=1<CR>
+nmap <leader>2 :set foldlevel=2<CR>
+nmap <leader>3 :set foldlevel=3<CR>
+nmap <leader>4 :set foldlevel=4<CR>
+nmap <leader>5 :set foldlevel=5<CR>
+nmap <leader>6 :set foldlevel=6<CR>
+nmap <leader>7 :set foldlevel=7<CR>
+nmap <leader>8 :set foldlevel=8<CR>
+nmap <leader>9 :set foldlevel=9<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -196,10 +210,11 @@ set laststatus=2
 
 "configure airline
 set noshowmode
-set cursorline
+"set cursorline
 set laststatus=2
 set ttimeoutlen=50
-let g:airline_theme='papercolor'
+"let g:airline_theme='papercolor'
+let g:airline_theme='term'
 let g:airline_section_b=""
 let g:airline_section_warning=""
 let g:airline#extensions#branch#enabled = 0
@@ -226,12 +241,9 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 " Fast quit
-nmap <leader>q :qa!<cr>
+nmap <leader>q :q!<cr>
 " Fast quit buffer
 nmap <leader>z :Bclose<cr>
-" Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
-
 
 
  " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
@@ -261,6 +273,7 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
+autocmd BufWrite *.js :call DeleteTrailingWS()
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
@@ -319,6 +332,9 @@ map <leader>l <C-W>l
 map <C-\> <C-W>s
 map <leader>\ <C-W>v
 
+
+" Close all the buffers
+map <leader>ba :1,1000 bd!<cr>
 
 " optimize
 " Useful mappings for managing tabs
@@ -489,6 +505,7 @@ let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$',
 
 
 
+
 "configure ctrlp.vim
 nnoremap <leader>p :CtrlPMixed<CR>
 nnoremap <leader>f :CtrlP<CR>
@@ -511,6 +528,7 @@ vnoremap <Leader>a :Tabularize /
 
 "configure Ctags
 set tags=./tags;/,~/.vimtags
+map <C-]> g]
 
 
 "configure tagbar
@@ -521,4 +539,22 @@ if has('gui_running')
     set guioptions-=T
     set background=dark
     colorscheme solarized
+else
+endif
+
+
+
+
+" Add the virtualenv's site-packages to vim path
+if has('python')
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+     project_base_dir = os.environ['VIRTUAL_ENV']
+     sys.path.insert(0, project_base_dir)
+     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+     execfile(activate_this, dict(__file__=activate_this))
+EOFs
 endif
