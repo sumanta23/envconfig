@@ -15,4 +15,4 @@ ln -s ${PWD}/gtkrc-2.0 ~/.gtkrc-2.0
 ln -s ${PWD}/settings.xml ~/.m2/settings.xml
 ln -s ${PWD}/pmdrules.xml ~/.m2/pmdrules.xml
 ln -s ${PWD}/flat-theme ~/.themes/flat
-ln -s ${pwd}/Xresources ~/.Xresources
+ln -s ${PWD}/Xresources ~/.Xresources
