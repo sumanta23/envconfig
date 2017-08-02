@@ -5,7 +5,7 @@ export TERM=xterm-256color
 export EDITOR=vim
 export SW_HOME=/home/sam/sw
 #Set env variables
-export JAVA_HOME=$SW_HOME/jdk1.8.0_60
+export JAVA_HOME=$SW_HOME/jdk1.8.0_45
 #export JAVA_HOME=$SW_HOME/jdk-9
 export M2_HOME=$SW_HOME/apache-maven-3.3.3
 export ANT_HOME=$SW_HOME/apache-ant-1.9.4
