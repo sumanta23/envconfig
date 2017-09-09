@@ -15,7 +15,7 @@ autocmd! bufwritepost .vimrc source %
 
  " let Vundle manage Vundle, required
  Plugin 'VundleVim/Vundle.vim'
- Plugin 'jistr/vim-nerdtree-tabs'
+ Plugin 'tpope/vim-fugitive'
  Plugin 'davidhalter/jedi-vim'
  Plugin 'ctrlpvim/ctrlp.vim'
  Plugin 'tacahiroy/ctrlp-funky'
@@ -34,15 +34,18 @@ autocmd! bufwritepost .vimrc source %
  Plugin 'tomtom/tlib_vim'
  Plugin 'garbas/vim-snipmate'
  Plugin 'scrooloose/nerdcommenter'
+ Plugin 'scrooloose/nerdTree'
  Plugin 'Yggdroot/indentLine'
- Plugin 'kana/vim-smartinput'
+ "Plugin 'kana/vim-smartinput'
  Plugin 'pangloss/vim-javascript'
  Plugin 'sjl/badwolf'
  Plugin 'jmcantrell/vim-virtualenv'
+
+ Plugin 'artur-shaik/vim-javacomplete2'
+ Plugin 'amix/open_file_under_cursor.vim'
  
  " Optional:
  Plugin 'honza/vim-snippets'
-
 
  " The following are examples of different formats supported.
  " Keep Plugin commands between vundle#begin/end.
@@ -70,6 +73,35 @@ autocmd! bufwritepost .vimrc source %
  call vundle#end()            " required
 
 
+"
+"java autocomplete does now work properly :)
+"==================================================
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+"To enable smart (trying to guess import option) inserting class imports with F4, add:
+
+nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+
+imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+
+"To enable usual (will ask for import option) inserting class imports with F5, add:
+
+nmap <F5> <Plug>(JavaComplete-Imports-Add)
+
+imap <F5> <Plug>(JavaComplete-Imports-Add)
+
+"To add all missing imports with F6:
+
+nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+
+imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+
+"To remove all unused imports with F7:
+
+nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+
+imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+
 
 
 
@@ -88,7 +120,6 @@ filetype plugin indent on
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 scriptencoding utf-8
-set foldenable                  " Auto fold code
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
@@ -138,7 +169,16 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
+"dont show fooking tab bar on top
+set showtabline=0
+
+" vim folding settings
 set foldenable
+set foldmethod=indent
+set foldnestmax=2
+set foldlevel=1
+set nofoldenable
+
 
 " No annoying sound on errors
 set noerrorbells
@@ -149,10 +189,11 @@ set tm=500
 set number
 set relativenumber
 
+" set intitially but prefer the default behaviour now
 "colorscheme desert
-colorscheme badwolf
-let g:badwolf_darkgutter = 1
-set background=dark
+"colorscheme badwolf
+"let g:badwolf_darkgutter = 1
+"set background=dark
 
 " Use spaces instead of tabs
 set expandtab
@@ -205,9 +246,14 @@ if has("gui_running")
     set guioptions+=e
     set t_Co=256
     set guitablabel=%M\ %t
+    set guioptions-=m  "remove menu bar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
 endif
 
 
+"vim grep settings using silver searcher
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -220,12 +266,12 @@ set noshowmode
 set cursorline
 set laststatus=2
 set ttimeoutlen=50
-let g:airline_theme='papercolor'
+let g:airline_theme='badwolf'
 let g:airline_section_b=""
 let g:airline_section_warning=""
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#csv#enabled = 0
-
+let g:airline#extensions#tabline#enabled = 0  "doesnt work
 let g:airline_left_sep='›'  " Slightly fancier than '>'
 let g:airline_right_sep='‹' " Slightly fancier than '<'
 
@@ -247,7 +293,7 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 " Fast quit
-nmap <leader>q :qa!<cr>
+nmap <leader>q :q!<cr>
 " Fast quit buffer
 nmap <leader>x :Bclose<cr>
 " Close all the buffers
@@ -284,15 +330,21 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.java :call DeleteTrailingWS()
+
+
+" map toggle fold to zz
+map zz za
+
+
+" map ; to : save shift
+nnoremap ; :
 
 
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
-" Shortcuts
-" Change Working Directory to that of the current file
-cmap cwd lcd %:p:h
-cmap cd. lcd %:p:h
 
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -308,15 +360,11 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 map j gj
 map k gk
 
-" command to use tabs
-nnoremap <leader>[   :tabprevious<CR>
-nnoremap <leader>]   :tabnext<CR>
-nnoremap <leader>=   :tabnew<CR>
-inoremap <leader>[   <Esc>:tabprevious<CR>i
-inoremap <leader>]   <Esc>:tabnext<CR>i
-inoremap <leader>=   <Esc>:tabnew<CR>
-nnoremap <leader>-   :tabclose<CR>
-inoremap <leader>-   <Esc>:tabclose<CR>
+" command to switch buffers
+nnoremap <leader>[   :bp<CR>
+nnoremap <leader>]   :bn<CR>
+inoremap <leader>[   <Esc>:bp<CR>i
+inoremap <leader>]   <Esc>:bn<CR>i
 
 " switch buffers back and forth
 map <C-k> :bn<CR>
@@ -331,26 +379,23 @@ map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map <leader>j <C-W>j
-map <leader>k <C-W>k
-map <leader>h <C-W>h
-map <leader>l <C-W>l
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " splitting window
 map <C-\> <C-W>s
-map <leader>\ <C-W>v
+map <C-_> <C-W>v
 
-
-" optimize
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+map <leader>o :edit <c-r>=expand("%:p:h")<cr>/
+
+
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -491,12 +536,12 @@ call pathogen#infect()
 " NERDTree conf"
 
 map <C-n> :NERDTreeToggle<CR>
+map <Leader>r :NERDTreeFind<CR>
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-
 
 
 "configure ctrlp-funky.vim
@@ -505,7 +550,7 @@ nnoremap <leader>f :CtrlPFunkyMulti<CR>
 
 "configure ctrlp.vim
 nnoremap <leader>m :CtrlPMixed<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
+
 
 let g:ctrlp_max_files=0
 let g:ctrlp_max_height = 15
@@ -515,7 +560,12 @@ let g:ctrlp_switch_buffer = 'Et'
 let g:ctrlp_user_command = 'find %s -type f' 
 
 "ignore node_modules and git and unittests and Client
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bin|dist|build|unittests)|(\.(swp|ico|git|svn))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bin|dist|git|build|unittests)|(\.(swp|ico|git|svn))$'
+
+
+"open gblame
+nnoremap <leader>b :Gblame<CR>
+
 
 "configure Tabular
 nmap <Leader>a= :Tabularize /=<CR>
@@ -525,11 +575,15 @@ vmap <Leader>a: :Tabularize /:<CR>
 nnoremap <Leader>a :Tabularize /
 vnoremap <Leader>a :Tabularize /
 
+"added path find use :find filename
+set path+=**
 
 
 "configure Ctags
 set tags=./tags;/,~/.vimtags
 
+" type g<C-]> to get list  and C-t to come back
+nnoremap <C-]> g<C-]>
 
 "configure tagbar
 nmap <F8>  :Tagbar<CR>
@@ -539,3 +593,31 @@ if has('gui_running')
     set background=dark
     colorscheme solarized
 endif
+
+
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+
+" bind K to grep word under cursor
+
+nnoremap <Leader>g :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
+"nnoremap K :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
+"vnoremap K y:Ack! "<C-R>""<CR>
+
+
+" quickfix settings
+augroup vimrcQfClose
+    autocmd!
+    autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
+augroup END
