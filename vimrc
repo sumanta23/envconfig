@@ -15,95 +15,56 @@ autocmd! bufwritepost .vimrc source %
 
  " let Vundle manage Vundle, required
  Plugin 'VundleVim/Vundle.vim'
- Plugin 'tpope/vim-fugitive'
- Plugin 'davidhalter/jedi-vim'
- Plugin 'ctrlpvim/ctrlp.vim'
- Plugin 'tacahiroy/ctrlp-funky'
- Plugin 'scrooloose/syntastic'
- Plugin 'ervandew/supertab'
- Plugin 'godlygeek/tabular'
- Plugin 'altercation/vim-colors-solarized'
- Plugin 'bling/vim-airline'
- Plugin 'vim-airline/vim-airline-themes'
- Plugin 'anyakichi/vim-surround'
- Plugin 'majutsushi/tagbar'
- Plugin 'airblade/vim-gitgutter'
- Plugin 'bling/vim-bufferline'
- Plugin 'mileszs/ack.vim'
+
+ "code snippets
  Plugin 'MarcWeber/vim-addon-mw-utils'
  Plugin 'tomtom/tlib_vim'
  Plugin 'garbas/vim-snipmate'
- Plugin 'scrooloose/nerdcommenter'
- Plugin 'scrooloose/nerdTree'
- Plugin 'Yggdroot/indentLine'
- "Plugin 'kana/vim-smartinput'
- Plugin 'pangloss/vim-javascript'
- Plugin 'sjl/badwolf'
- Plugin 'jmcantrell/vim-virtualenv'
-
- Plugin 'artur-shaik/vim-javacomplete2'
- Plugin 'amix/open_file_under_cursor.vim'
- 
- " Optional:
  Plugin 'honza/vim-snippets'
 
- " The following are examples of different formats supported.
- " Keep Plugin commands between vundle#begin/end.
- " plugin on GitHub repo
- "Plugin 'tpope/vim-fugitive'
- " plugin from http://vim-scripts.org/vim/scripts.html
- "Plugin 'L9'
- " Git plugin not hosted on GitHub
- "Plugin 'git://git.wincent.com/command-t.git'
- " git repos on your local machine (i.e. when working on your own plugin)
- "Plugin 'file:///home/gmarik/path/to/plugin'
- " The sparkup vim script is in a subdirectory of this repo called vim.
- " Pass the path to set the runtimepath properly.
- "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
- " Avoid a name conflict with L9
- "Plugin 'user/L9', {'name': 'newL9'}
+ "Plugin 'kana/vim-smartinput'
 
+ "vim editor beautify
+ Plugin 'bling/vim-bufferline'
+ Plugin 'altercation/vim-colors-solarized'
+ Plugin 'bling/vim-airline'
+ Plugin 'vim-airline/vim-airline-themes'
+ Plugin 'sjl/badwolf'
 
+ "code navigation
+ Plugin 'ctrlpvim/ctrlp.vim'
+ Plugin 'amix/open_file_under_cursor.vim'
+ Plugin 'mileszs/ack.vim'
+ Plugin 'scrooloose/nerdTree'
+ Plugin 'majutsushi/tagbar'
 
+ "code editing
+ Plugin 'scrooloose/nerdcommenter'
+ Plugin 'Yggdroot/indentLine'
+ Plugin 'scrooloose/syntastic'
+ Plugin 'ervandew/supertab'
+ Plugin 'godlygeek/tabular'
+ Plugin 'anyakichi/vim-surround'
 
+ "repository plugin
+ Plugin 'tpope/vim-fugitive'
+ Plugin 'airblade/vim-gitgutter'
+
+ "python
+ Plugin 'davidhalter/jedi-vim'
+ Plugin 'jmcantrell/vim-virtualenv'
+
+ "java
+ Plugin 'artur-shaik/vim-javacomplete2'
+
+ "javascript
+ Plugin 'pangloss/vim-javascript'
+ Plugin 'elzr/vim-json'
 
 
 
  " All of your Plugins must be added before the following line
  call vundle#end()            " required
-
-
-"
-"java autocomplete does now work properly :)
-"==================================================
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-"To enable smart (trying to guess import option) inserting class imports with F4, add:
-
-nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-
-imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-
-"To enable usual (will ask for import option) inserting class imports with F5, add:
-
-nmap <F5> <Plug>(JavaComplete-Imports-Add)
-
-imap <F5> <Plug>(JavaComplete-Imports-Add)
-
-"To add all missing imports with F6:
-
-nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-
-imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-
-"To remove all unused imports with F7:
-
-nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
-
-imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
-
-
-
 
 
 
@@ -137,6 +98,7 @@ set wildignore=*.o,*~,*.pyc,*.class,*.so,*.swp,*.zip
 set ruler
 
 " Height of the command bar
+set showcmd
 set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
@@ -154,6 +116,7 @@ set smartcase
 
 " Highlight search results
 set hlsearch
+hi Search cterm=NONE ctermfg=red ctermbg=green
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -163,6 +126,8 @@ set lazyredraw
 
 " For regular expressions turn magic on
 set magic
+
+set showmode
 
 " Show matching brackets when text indicator is over them
 set showmatch
@@ -189,7 +154,6 @@ set tm=500
 set number
 set relativenumber
 
-" set intitially but prefer the default behaviour now
 "colorscheme desert
 "colorscheme badwolf
 "let g:badwolf_darkgutter = 1
@@ -226,6 +190,8 @@ set nobackup
 set nowb
 set noswapfile
 
+"added path find use :find filename
+set path+=**
 
 
 " Set to auto read when a file is changed from the outside
@@ -240,20 +206,15 @@ set udir=~/.vim/.vimtemp/undo//
 "change .viminfo file location"
 set viminfo+=n~/.vim/.viminfo
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-    set guioptions-=m  "remove menu bar
-    set guioptions-=r  "remove right-hand scroll bar
-    set guioptions-=L  "remove left-hand scroll bar
-endif
-
-
-"vim grep settings using silver searcher
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" quickfix settings
+augroup vimrcQfClose
+    autocmd!
+    autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
+augroup END
+
+
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -271,196 +232,11 @@ let g:airline_section_b=""
 let g:airline_section_warning=""
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#csv#enabled = 0
-let g:airline#extensions#tabline#enabled = 0  "doesnt work
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_left_sep='›'  " Slightly fancier than '>'
 let g:airline_right_sep='‹' " Slightly fancier than '<'
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" For when you forget to sudo.. Really Write the file.
-cmap w!! w !sudo tee % >/dev/null
-
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
-
-" Fast saving
-nmap <leader>w :w!<cr>
-" Fast quit
-nmap <leader>q :q!<cr>
-" Fast quit buffer
-nmap <leader>x :Bclose<cr>
-" Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
-
-
-
- " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
-map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
-
-
-
-" Remap VIM 0 to first non-blank character
-map 0 ^
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-autocmd BufWrite *.js :call DeleteTrailingWS()
-autocmd BufWrite *.java :call DeleteTrailingWS()
-
-
-" map toggle fold to zz
-map zz za
-
-
-" map ; to : save shift
-nnoremap ; :
-
-
-" Find merge conflict markers
-map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
-
-
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
-
-
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f')<CR>
-vnoremap <silent> # :call VisualSelection('b')<CR>
-
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
-
-" command to switch buffers
-nnoremap <leader>[   :bp<CR>
-nnoremap <leader>]   :bn<CR>
-inoremap <leader>[   <Esc>:bp<CR>i
-inoremap <leader>]   <Esc>:bn<CR>i
-
-" switch buffers back and forth
-map <C-k> :bn<CR>
-map <C-j> :bp<CR>
-
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" splitting window
-map <C-\> <C-W>s
-map <C-_> <C-W>v
-
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-map <leader>o :edit <c-r>=expand("%:p:h")<cr>/
-
-
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
-
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-
-" Remember info about open buffers on close
-"set viminfo^=%
-
-
-
-
-" cut copy paste
-vmap <C-c> "+yi
-vmap <C-x> "+c
-vmap <C-v> c<ESC>"+p
-imap <C-v> <ESC>"+pa
-
-
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<CR>
-
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-
-
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -523,7 +299,10 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+
+
 """"""""""""""""""""""""""""""""""""""""""
+"=> infect pathogen
 """"""""""""""""""""""""""""""""""""""""""
 
 " Setup Pathogen to manage your plugins
@@ -533,8 +312,196 @@ endfunction
 call pathogen#infect()
 
 
-" NERDTree conf"
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+"===> java autocomplete does now work properly :)
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+"To enable smart (trying to guess import option) inserting class imports with F4, add:
+
+nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+
+imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+
+"To enable usual (will ask for import option) inserting class imports with F5, add:
+
+nmap <F5> <Plug>(JavaComplete-Imports-Add)
+
+imap <F5> <Plug>(JavaComplete-Imports-Add)
+
+"To add all missing imports with F6:
+
+nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+
+imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+
+"To remove all unused imports with F7:
+
+nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+
+imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
+
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+" Fast quit
+nmap <leader>q :q!<cr>
+" Fast quit buffer
+nmap <leader>x :Bclose<cr>
+" Close all the buffers
+map <leader>ba :1,1000 bd!<cr>
+
+
+
+ " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
+map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+
+
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <g-j> mz:m+<cr>`z
+nmap <g-k> mz:m-2<cr>`z
+vmap <g-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <g-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.java :call DeleteTrailingWS()
+
+
+" map toggle fold to zz
+map zz za
+
+
+" map ; to : save shift
+nnoremap ; :
+
+
+" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+
+
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+map <c-space> ?
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" command to switch buffers
+nnoremap <leader>[   :bp<CR>
+nnoremap <leader>]   :bn<CR>
+inoremap <leader>[   <Esc>:bp<CR>i
+inoremap <leader>]   <Esc>:bn<CR>i
+
+" switch buffers back and forth
+map <leader>k :bn<CR>
+map <leader>j :bp<CR>
+
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" splitting window
+map <C-\> <C-W>v
+map <C-_> <C-W>s
+
+
+" Specify the behavior when switching between buffers 
+try
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
+catch
+endtry
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" Remember info about open buffers on close
+"set viminfo^=%
+
+
+
+" When you press gv you vimgrep after the selected text
+vnoremap <silent> gv :call VisualSelection('gv')<CR>
+
+" Open vimgrep and put the cursor in the right position
+map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+
+" Vimgreps in the current file
+map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+
+" Do :help cope if you are unsure what cope is. It's super useful!
+" When you search with vimgrep, display your results in cope by doing:
+"   <leader>cc
+map <leader>cc :botright cope<cr>
+
+
+
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>cm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+
+
+
+" NERDTree conf"
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>r :NERDTreeFind<CR>
 let g:NERDTreeDirArrows = 1
@@ -544,23 +511,19 @@ let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
 
 
-"configure ctrlp-funky.vim
-nnoremap <leader>p :CtrlPFunky<Cr>
-nnoremap <leader>f :CtrlPFunkyMulti<CR>
 
 "configure ctrlp.vim
 nnoremap <leader>m :CtrlPMixed<CR>
 
-
 let g:ctrlp_max_files=0
-let g:ctrlp_max_height = 15
+let g:ctrlp_max_height = 25
 let g:ctrlp_max_depth = 40
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_switch_buffer = 'Et'
+let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
 let g:ctrlp_user_command = 'find %s -type f' 
-
-"ignore node_modules and git and unittests and Client
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bin|dist|git|build|unittests)|(\.(swp|ico|git|svn))$'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 
 "open gblame
@@ -575,8 +538,6 @@ vmap <Leader>a: :Tabularize /:<CR>
 nnoremap <Leader>a :Tabularize /
 vnoremap <Leader>a :Tabularize /
 
-"added path find use :find filename
-set path+=**
 
 
 "configure Ctags
@@ -587,13 +548,6 @@ nnoremap <C-]> g<C-]>
 
 "configure tagbar
 nmap <F8>  :Tagbar<CR>
-
-if has('gui_running')
-    set guioptions-=T
-    set background=dark
-    colorscheme solarized
-endif
-
 
 
 " The Silver Searcher
@@ -609,15 +563,5 @@ if executable('ag')
 endif
 
 
-" bind K to grep word under cursor
-
+" binding to grep word under cursor
 nnoremap <Leader>g :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
-"nnoremap K :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
-"vnoremap K y:Ack! "<C-R>""<CR>
-
-
-" quickfix settings
-augroup vimrcQfClose
-    autocmd!
-    autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
-augroup END
