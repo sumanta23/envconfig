@@ -116,7 +116,8 @@ set smartcase
 
 " Highlight search results
 set hlsearch
-hi Search cterm=NONE ctermfg=red ctermbg=green
+hi Search cterm=NONE ctermfg=RED ctermbg=NONE
+hi Error cterm=NONE ctermfg=BLUE ctermbg=NONE
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -499,6 +500,9 @@ noremap <Leader>cm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 map <leader>pp :setlocal paste!<cr>
 
 
+"configure syntastics
+let g:syntastic_enable_highlighting=0
+let g:syntastic_enable_signs=1
 
 
 " NERDTree conf"
