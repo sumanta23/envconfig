@@ -41,7 +41,13 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 #ctags generator
 function createCtags(){
- ctags -R --languages=$1 --exclude=.git --exclude=logs --exclude=node_modules
+    AG=`which ag`
+    if [ ! -z $AG ]; then
+        $AG -l | ctags -R --languages=$1 --exclude=.git --exclude=logs --exclude=node_modules
+    else
+        echo $AG + " File not found!"
+        ctags -R --languages=$1 --exclude=.git --exclude=logs --exclude=node_modules
+    fi
 }
 alias ctag=createCtags
 
