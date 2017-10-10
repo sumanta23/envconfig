@@ -1,5 +1,5 @@
 <settings>
-  <proxies>
+  <!--proxies>
    <proxy>
       <active>true</active>
       <protocol>http</protocol>
@@ -9,5 +9,5 @@
       <password>pass</password>
       <nonProxyHosts>www.google.com</nonProxyHosts>
     </proxy>
-  </proxies>
+  </proxies-->
 </settings>
