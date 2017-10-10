@@ -593,9 +593,9 @@ nnoremap <Leader>g :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap <Leader>vim :e ~/.vimrc<CR>
 nnoremap <Leader>sh :e ~/.bash_aliases<CR>
 
-+" Edit another file in the same directory as the current file
-+" uses expression to extract path from current file's path
-+map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-+map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-+map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-+map <Leader>ec :e ~/code/
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>ec :e ~/code/
