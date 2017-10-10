@@ -372,7 +372,7 @@ nmap <leader>x :Bclose<cr>
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
 
-
+set timeoutlen=3000
 
  " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
 map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
@@ -571,3 +571,7 @@ endif
 
 " binding to grep word under cursor
 nnoremap <Leader>g :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" random leader settings
+nnoremap <Leader>vim :e ~/.vimrc<CR>
+nnoremap <Leader>sh :e ~/.bash_aliases<CR>
