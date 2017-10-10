@@ -217,6 +217,8 @@ augroup vimrcQfClose
     autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
 augroup END
 
+" Wrap the quickfix window
+autocmd FileType qf setlocal wrap linebreak
 
 
 """"""""""""""""""""""""""""""
@@ -395,10 +397,25 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-autocmd BufWrite *.js :call DeleteTrailingWS()
-autocmd BufWrite *.java :call DeleteTrailingWS()
+function! s:FixWhitespace(line1,line2)
+    let l:save_cursor = getpos(".")
+    silent! execute ':' . a:line1 . ',' . a:line2 . 's/\\\@<!\s\+$//'
+    call setpos('.', l:save_cursor)
+endfunction
+
+" Run :FixWhitespace to remove end of line white space
+command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
+
+nnoremap <Leader>ss V :FixWhitespace<CR>
+vnoremap <Leader>ss :FixWhitespace<CR>
+inoremap <Leader>ss <ESC>V :FixWhitespace<CR>i
+
+map <Leader>ws :call DeleteTrailingWS()<CR>
+
+"autocmd BufWrite *.py :call DeleteTrailingWS()
+"autocmd BufWrite *.coffee :call DeleteTrailingWS()
+"autocmd BufWrite *.js :call StripTrailingWhitespace()
+"autocmd BufWrite *.java :call DeleteTrailingWS()
 
 
 " map toggle fold to zz
@@ -575,3 +592,10 @@ nnoremap <Leader>g :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " random leader settings
 nnoremap <Leader>vim :e ~/.vimrc<CR>
 nnoremap <Leader>sh :e ~/.bash_aliases<CR>
+
++" Edit another file in the same directory as the current file
++" uses expression to extract path from current file's path
++map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
++map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
++map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
++map <Leader>ec :e ~/code/
