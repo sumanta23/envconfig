@@ -24,12 +24,9 @@ autocmd! bufwritepost .vimrc source %
 
  "Plugin 'kana/vim-smartinput'
 
- "vim editor beautify
+  "vim editor beautify
  Plugin 'bling/vim-bufferline'
- Plugin 'altercation/vim-colors-solarized'
- Plugin 'bling/vim-airline'
- Plugin 'vim-airline/vim-airline-themes'
- Plugin 'sjl/badwolf'
+ Plugin 'itchyny/lightline.vim'
 
  "code navigation
  Plugin 'ctrlpvim/ctrlp.vim'
@@ -232,22 +229,10 @@ autocmd FileType qf setlocal wrap linebreak
 """"""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
-
-"configure airline
 set noshowmode
 set cursorline
 set laststatus=2
 set ttimeoutlen=50
-let g:airline_theme='badwolf'
-let g:airline_section_b=""
-let g:airline_section_warning=""
-let g:airline#extensions#branch#enabled = 0
-let g:airline#extensions#csv#enabled = 0
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_left_sep='›'  " Slightly fancier than '>'
-let g:airline_right_sep='‹' " Slightly fancier than '<'
-
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
