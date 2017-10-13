@@ -86,6 +86,12 @@ scriptencoding utf-8
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
+" system clipboard.
+set clipboard=unnamed
+set clipboard=unnamedplus
+inoremap <C-v> <ESC>"+pa
+vnoremap <C-c> "+y
+vnoremap <C-d> "+d
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
