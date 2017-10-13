@@ -24,9 +24,8 @@ autocmd! bufwritepost .vimrc source %
 
  "Plugin 'kana/vim-smartinput'
 
-  "vim editor beautify
+ "vim editor beautify
  Plugin 'bling/vim-bufferline'
- Plugin 'itchyny/lightline.vim'
 
  "code navigation
  Plugin 'ctrlpvim/ctrlp.vim'
@@ -52,7 +51,7 @@ autocmd! bufwritepost .vimrc source %
  Plugin 'jmcantrell/vim-virtualenv'
 
  "java
- Plugin 'artur-shaik/vim-javacomplete2'
+ "Plugin 'artur-shaik/vim-javacomplete2'
 
  "javascript
  Plugin 'pangloss/vim-javascript'
@@ -123,6 +122,7 @@ set smartcase
 set hlsearch
 hi Search cterm=NONE ctermfg=RED ctermbg=NONE
 hi Error cterm=NONE ctermfg=BLUE ctermbg=NONE
+hi Folded cterm=NONE ctermfg=YELLOW ctermbg=NONE
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -146,8 +146,9 @@ set showtabline=0
 " vim folding settings
 set foldenable
 set foldmethod=indent
-set foldnestmax=2
-set foldlevel=1
+set foldnestmax=5
+set foldlevel=10
+set foldlevelstart=5
 set nofoldenable
 
 
@@ -197,7 +198,7 @@ set nowb
 set noswapfile
 
 "added path find use :find filename
-set path+=**
+set path+=$PWD/**                      " Search recursively for file related tasks
 
 
 " Set to auto read when a file is changed from the outside
@@ -231,8 +232,77 @@ autocmd FileType qf setlocal wrap linebreak
 set laststatus=2
 set noshowmode
 set cursorline
-set laststatus=2
 set ttimeoutlen=50
+
+
+" Statusline
+
+let g:currentmode={
+    \ 'n'  : 'NORMAL ',
+    \ 'no' : 'N·Operator Pending ',
+    \ 'v'  : 'VISUAL ',
+    \ 'V'  : 'V·Line ',
+    \ '^V' : 'V·Block ',
+    \ 's'  : 'Select ',
+    \ 'S'  : 'S·Line ',
+    \ '^S' : 'S·Block ',
+    \ 'i'  : 'INSERT ',
+    \ 'R'  : 'R ',
+    \ 'Rv' : 'V·Replace ',
+    \ 'c'  : 'Command ',
+    \ 'cv' : 'Vim Ex ',
+    \ 'ce' : 'Ex ',
+    \ 'r'  : 'Prompt ',
+    \ 'rm' : 'More ',
+    \ 'r?' : 'Confirm ',
+    \ '!'  : 'Shell ',
+    \ 't'  : 'Terminal '
+    \}
+
+" Automatically change the statusline color depending on mode
+function! ChangeStatuslineColor()
+  if (mode() =~# '\v(n|no)')
+    exe 'hi! StatusLine ctermfg=GREEN'
+  elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
+    exe 'hi! StatusLine ctermfg=003'
+  elseif (mode() ==# 'i')
+    exe 'hi! StatusLine ctermfg=004'
+  else
+    exe 'hi! StatusLine ctermfg=001'
+  endif
+
+  return ''
+endfunction
+
+function! ReadOnly()
+  if &readonly || !&modifiable
+    return ''
+  else
+    return ''
+endfunction
+
+
+set statusline=
+set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
+set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
+set statusline+=%3*\ [%n]                                " buffernr
+set statusline+=%3*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
+set statusline+=%*
+set statusline+=%4*\ %=                                  " Space
+set statusline+=%0*\ %y\                                 " FileType
+set statusline+=%0*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
+set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                 " Rownumber/total (%)
+
+hi User1 ctermfg=007
+hi User2 ctermfg=008 ctermbg=234
+hi User3 ctermfg=YELLOW ctermbg=234
+hi User4 ctermfg=007 ctermbg=234
+
+
+
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
