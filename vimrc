@@ -8,59 +8,59 @@ autocmd! bufwritepost .vimrc source %
 " Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set the runtime path to include Vundle and initialize
- set rtp+=~/.vim/bundle/Vundle.vim
- call vundle#begin()
- " alternatively, pass a path where Vundle should install plugins
- "call vundle#begin('~/some/path/here')
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
- " let Vundle manage Vundle, required
- Plugin 'VundleVim/Vundle.vim'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
- "code snippets
- Plugin 'MarcWeber/vim-addon-mw-utils'
- Plugin 'tomtom/tlib_vim'
- Plugin 'garbas/vim-snipmate'
- Plugin 'honza/vim-snippets'
+"code snippets
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
- "Plugin 'kana/vim-smartinput'
+"Plugin 'kana/vim-smartinput'
 
- "vim editor beautify
- Plugin 'bling/vim-bufferline'
+"vim editor beautify
+Plugin 'bling/vim-bufferline'
 
- "code navigation
- Plugin 'ctrlpvim/ctrlp.vim'
- Plugin 'amix/open_file_under_cursor.vim'
- Plugin 'mileszs/ack.vim'
- Plugin 'scrooloose/nerdTree'
- Plugin 'majutsushi/tagbar'
+"code navigation
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'amix/open_file_under_cursor.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/nerdTree'
+Plugin 'majutsushi/tagbar'
 
- "code editing
- Plugin 'scrooloose/nerdcommenter'
- Plugin 'Yggdroot/indentLine'
- Plugin 'scrooloose/syntastic'
- Plugin 'ervandew/supertab'
- Plugin 'godlygeek/tabular'
- Plugin 'anyakichi/vim-surround'
+"code editing
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Yggdroot/indentLine'
+Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
+Plugin 'anyakichi/vim-surround'
 
- "repository plugin
- Plugin 'tpope/vim-fugitive'
- Plugin 'airblade/vim-gitgutter'
+"repository plugin
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
- "python
- Plugin 'davidhalter/jedi-vim'
- Plugin 'jmcantrell/vim-virtualenv'
+"python
+Plugin 'davidhalter/jedi-vim'
+Plugin 'jmcantrell/vim-virtualenv'
 
- "java
- "Plugin 'artur-shaik/vim-javacomplete2'
+"java
+"Plugin 'artur-shaik/vim-javacomplete2'
 
- "javascript
- Plugin 'pangloss/vim-javascript'
- Plugin 'elzr/vim-json'
+"javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
 
 
 
- " All of your Plugins must be added before the following line
- call vundle#end()            " required
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 
 
@@ -276,7 +276,7 @@ endfunction
 
 function! ReadOnly()
   if &readonly || !&modifiable
-    return ''
+    return 'RO'
   else
     return ''
 endfunction
@@ -293,7 +293,7 @@ set statusline+=%*
 set statusline+=%4*\ %=                                  " Space
 set statusline+=%0*\ %y\                                 " FileType
 set statusline+=%0*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
-set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                 " Rownumber/total (%)
+set statusline+=%0*\ %3p%%\ \ %l\ :%3c\                 " Rownumber/total (%)
 
 hi User1 ctermfg=007
 hi User2 ctermfg=008 ctermbg=234
@@ -539,7 +539,7 @@ map <C-_> <C-W>s
 " Specify the behavior when switching between buffers 
 try
   set switchbuf=useopen,usetab,newtab
-  set stal=2
+  "set stal=2
 catch
 endtry
 
@@ -605,7 +605,7 @@ let g:ctrlp_max_depth = 40
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_switch_buffer = 'Et'
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
-let g:ctrlp_user_command = 'find %s -type f' 
+"let g:ctrlp_user_command = 'find %s -type f' 
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bin|dist|git|build|unittests)|(\.(swp|ico|git|svn))$'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
