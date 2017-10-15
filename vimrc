@@ -488,8 +488,8 @@ nnoremap ; :
 
 
 " Find merge conflict markers
-map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
-
+map <leader>gc /\v^[<\|=>]{7}( .*\|$)<CR>
+map <leader>f :find 
 
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
