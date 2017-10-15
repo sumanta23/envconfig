@@ -433,7 +433,7 @@ nmap <leader>q :q!<cr>
 " Fast quit buffer
 nmap <leader>x :Bclose<cr>
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+map <leader>cb :1,1000 bd!<cr>
 
 set timeoutlen=3000
 
@@ -611,8 +611,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 
 "open gblame
-nnoremap <leader>b :Gblame<CR>
-
+nnoremap <leader>gb :Gblame<CR>
+map <leader>b :ls<CR>
 
 "configure Tabular
 nmap <Leader>a= :Tabularize /=<CR>
@@ -622,7 +622,8 @@ vmap <Leader>a: :Tabularize /:<CR>
 nnoremap <Leader>a :Tabularize /
 vnoremap <Leader>a :Tabularize /
 
-
+"configure macro
+map <Leader>@ :'<,'>norm! @
 
 "configure Ctags
 set tags=./tags;/,~/.vimtags
