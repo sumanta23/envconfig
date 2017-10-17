@@ -576,9 +576,6 @@ map <leader>cc :botright cope<cr>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>cm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
 
 "configure syntastics
 let g:syntastic_enable_highlighting=0
@@ -598,6 +595,7 @@ let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$',
 
 "configure ctrlp.vim
 nnoremap <leader>m :CtrlPMixed<CR>
+nnoremap <leader>p :CtrlP<CR>
 
 let g:ctrlp_max_files=0
 let g:ctrlp_max_height = 25
@@ -661,3 +659,9 @@ map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>ec :e ~/code/
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
