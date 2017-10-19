@@ -26,6 +26,7 @@ Plugin 'honza/vim-snippets'
 
 "vim editor beautify
 Plugin 'bling/vim-bufferline'
+Plugin 'itchyny/lightline.vim'
 
 "code navigation
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -64,6 +65,18 @@ call vundle#end()            " required
 
 
 
+""""""""""""""""""""""""""""""""""""""""""
+"=> infect pathogen
+""""""""""""""""""""""""""""""""""""""""""
+
+" Setup Pathogen to manage your plugins
+" mkdir -p ~/.vim/autoload ~/.vim/bundle
+" curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
+call pathogen#infect()
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,6 +101,14 @@ set clipboard=unnamedplus
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
+
+
+" Always show the status line
+set laststatus=2
+set noshowmode
+set cursorline
+set ttimeoutlen=50
+
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -225,86 +246,6 @@ augroup END
 autocmd FileType qf setlocal wrap linebreak
 
 
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
-set noshowmode
-set cursorline
-set ttimeoutlen=50
-
-
-" Statusline
-
-let g:currentmode={
-    \ 'n'  : 'NORMAL ',
-    \ 'no' : 'N·Operator Pending ',
-    \ 'v'  : 'VISUAL ',
-    \ 'V'  : 'V·Line ',
-    \ '^V' : 'V·Block ',
-    \ 's'  : 'Select ',
-    \ 'S'  : 'S·Line ',
-    \ '^S' : 'S·Block ',
-    \ 'i'  : 'INSERT ',
-    \ 'R'  : 'R ',
-    \ 'Rv' : 'V·Replace ',
-    \ 'c'  : 'Command ',
-    \ 'cv' : 'Vim Ex ',
-    \ 'ce' : 'Ex ',
-    \ 'r'  : 'Prompt ',
-    \ 'rm' : 'More ',
-    \ 'r?' : 'Confirm ',
-    \ '!'  : 'Shell ',
-    \ 't'  : 'Terminal '
-    \}
-
-" Automatically change the statusline color depending on mode
-function! ChangeStatuslineColor()
-  if (mode() =~# '\v(n|no)')
-    exe 'hi! StatusLine ctermfg=GREEN'
-  elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
-    exe 'hi! StatusLine ctermfg=003'
-  elseif (mode() ==# 'i')
-    exe 'hi! StatusLine ctermfg=004'
-  else
-    exe 'hi! StatusLine ctermfg=001'
-  endif
-
-  return ''
-endfunction
-
-function! ReadOnly()
-  if &readonly || !&modifiable
-    return 'RO'
-  else
-    return ''
-endfunction
-
-
-set statusline=
-set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
-set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
-set statusline+=%3*\ [%n]                                " buffernr
-set statusline+=%3*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
-set statusline+=%*
-set statusline+=%4*\ %=                                  " Space
-set statusline+=%0*\ %y\                                 " FileType
-set statusline+=%0*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
-set statusline+=%0*\ %3p%%\ \ %l\ :%3c\                 " Rownumber/total (%)
-
-hi User1 ctermfg=007
-hi User2 ctermfg=008 ctermbg=234
-hi User3 ctermfg=YELLOW ctermbg=234
-hi User4 ctermfg=007 ctermbg=234
-
-
-
-
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -364,19 +305,6 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
-
-
-
-""""""""""""""""""""""""""""""""""""""""""
-"=> infect pathogen
-""""""""""""""""""""""""""""""""""""""""""
-
-" Setup Pathogen to manage your plugins
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
-call pathogen#infect()
-
 
 
 
@@ -610,7 +538,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 "open gblame
 nnoremap <leader>gb :Gblame<CR>
-map <leader>b :ls<CR>
+map <leader>b :ls<CR>:b 
 
 "configure Tabular
 nmap <Leader>a= :Tabularize /=<CR>

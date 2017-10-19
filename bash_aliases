@@ -39,6 +39,9 @@ alias power='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep perce
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
+#venv activate
+alias venv='source .venv/bin/activate'
+
 #ctags generator
 function createCtags(){
     AG=`which ag`
