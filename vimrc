@@ -27,6 +27,7 @@ Plugin 'honza/vim-snippets'
 "vim editor beautify
 Plugin 'bling/vim-bufferline'
 Plugin 'itchyny/lightline.vim'
+Plugin 'altercation/vim-colors-solarized'
 
 "code navigation
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -206,6 +207,22 @@ set si "Smart indent
 set wrap "Wrap lines
 
 
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+ 
+if has('gui_running')
+    colorscheme solarized
+    set background=dark
+endif
+
+let g:solarized_termcolors=256
+
+
+set splitright                  " Puts new vsplit windows to the right of the current
+set splitbelow                  " Puts new split windows to the bottom of the current
+
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -374,10 +391,10 @@ map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscr
 map 0 ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <g-j> mz:m+<cr>`z
-nmap <g-k> mz:m-2<cr>`z
-vmap <g-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <g-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap mj mz:m+<cr>`z
+nmap mk mz:m-2<cr>`z
+vmap mj :m'>+<cr>`<my`>mzgv`yo`z
+vmap mk :m'<-2<cr>`>my`<mzgv`yo`z
 
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
