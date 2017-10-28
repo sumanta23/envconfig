@@ -107,9 +107,14 @@ vnoremap <C-d> "+d
 " Always show the status line
 set laststatus=2
 set noshowmode
-set cursorline
+"set cursorline
 set ttimeoutlen=50
 
+if exists('$TMUX')
+    "do not set cursorline
+else 
+    "set cursorline
+endif 
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -181,7 +186,7 @@ set t_vb=
 set tm=500
 
 set number
-set relativenumber
+"set relativenumber
 
 "colorscheme desert
 "colorscheme badwolf
@@ -550,7 +555,7 @@ let g:ctrlp_switch_buffer = 'Et'
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
 "let g:ctrlp_user_command = 'find %s -type f' 
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bin|dist|git|build|unittests)|(\.(swp|ico|git|svn))$'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
 
 
 "open gblame
