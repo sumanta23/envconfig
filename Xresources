@@ -1,3 +1,7 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! xrdb .Xresources
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: true
@@ -51,5 +55,25 @@ rofi.fuzzy: false
 *color7:  #a89984
 *color15: #ebdbb2
 
+Xcursor.theme: Adwaita
+
+!!!!!!!!!!!!!!!!!!!!!!!!!
+! xterm settings
+!!!!!!!!!!!!!!!!!!!!!!!!!
+XTerm*selectToClipboard:true
 XTerm*faceName: Bitstream Vera Serif Mono
-xterm*faceSize: 10
+XTerm*faceSize: 10
+XTerm*foreground: #657b83
+XTerm*background: #002b36
+
+XTerm*utf8: True
+XTerm*locale: True
+XTerm*utf8Title: True
+XTerm*renderFont: True
+XTerm*preeditType: Root
+XTerm*xftAntialias: true
+
+! Copy and paste with clipboard
+XTerm*translations: #override \
+    Ctrl Shift <KeyPress> C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
