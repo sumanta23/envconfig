@@ -31,7 +31,6 @@ Plugin 'altercation/vim-colors-solarized'
 
 "code navigation
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'amix/open_file_under_cursor.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdTree'
 Plugin 'majutsushi/tagbar'
