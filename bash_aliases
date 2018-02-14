@@ -13,12 +13,14 @@ export GRADLE_HOME=$SW_HOME/gradle-2.3
 export SUBLIME_HOME=$SW_HOME/sublime_test_3
 PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin:$SUBLIME_HOME:$PATH
 
-source /usr/share/git/git-prompt.sh
+if [ -f /usr/share/git/git-prompt.sh ]; then
+    source /usr/share/git/git-prompt.sh
+fi
 
 # install nvm in path
-if [ -f ~/.nvm/nvm.sh ]; then
-    . ~/.nvm/nvm.sh
-fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s $NVM_DIR/bash_completion ] && \. $NVM_DIR/bash_completion
 
 alias ll='ls -alF'
 alias g='git'
@@ -38,6 +40,12 @@ alias primary='xrandr --output VGA1 --off'
 alias power='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | grep -oE "[0-9]{1,3}%"'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+#perftool
+export SSLKEYLOGFILE=~/sslkeylog.log
+alias tcpdump='sudo tcpdump -nni lo -vv -s0 -A'
+alias perf='sudo perf record -F 99 -ag -- sleep 60'
+alias perfr='sudo perf report --sort pid'
+alias flame='sudo perf script | stackcollapse-perf.pl | flamegraph.pl'
 
 #venv activate
 alias venv='source .venv/bin/activate'
@@ -54,6 +62,13 @@ function createCtags(){
 }
 alias ctag=createCtags
 
+
+function tubeplay() {
+    #youtube-dl $1 -o - |  mplayer -vo aa -monitorpixelaspect 0.5 -
+    mplayer <(youtube-dl -o - $1)
+}
+
+alias tubeplay=tubeplay
 
 export PRIVATE_BIN=~/private.bin
 PATH=$PRIVATE_BIN:$PATH
