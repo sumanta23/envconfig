@@ -18,7 +18,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 "code snippets
 Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
+"Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
@@ -31,7 +31,7 @@ Plugin 'altercation/vim-colors-solarized'
 
 "code navigation
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
+"Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdTree'
 Plugin 'majutsushi/tagbar'
 
@@ -41,7 +41,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
-Plugin 'anyakichi/vim-surround'
+Plugin 'tpope/vim-surround'
 
 "repository plugin
 Plugin 'tpope/vim-fugitive'
@@ -549,8 +549,9 @@ nnoremap <leader>p :CtrlP<CR>
 let g:ctrlp_max_files=0
 let g:ctrlp_max_height = 25
 let g:ctrlp_max_depth = 40
-let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_switch_buffer = 'Et'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
 "let g:ctrlp_user_command = 'find %s -type f' 
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bin|dist|git|build|unittests)|(\.(swp|ico|git|svn))$'
@@ -614,3 +615,4 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
