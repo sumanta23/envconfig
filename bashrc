@@ -78,5 +78,3 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export NVM_DIR="/home/sam/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
