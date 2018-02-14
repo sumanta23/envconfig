@@ -1,3 +1,8 @@
+.viminfo
+.vimtemp/
+autoload/
+bundle/
+
 # java related
 ################
 **/.settings/
@@ -43,6 +48,11 @@ sdist/
 # Nodejs
 ###############
 node_modules
+
+####################
+#Ctags
+####################
+tags
 
 
 # Unit test / coverage reports
