@@ -1,0 +1,48 @@
+session_name: server
+repo_path: ~/repo/Server/
+windows:
+- window_name: app
+  layout: tiled
+  panes:
+    - node myapp.js
+    - node myapp.js
+    - node myapp.js
+    - node myapp.js
+- window_name: base
+  layout: tiled
+  panes:
+    - node myapp.js
+    - node myapp.js
+    - node myapp.js
+    - node myapp.js
+- window_name: socket
+  layout: even-horizontal
+  panes:
+    - node myapp.js
+    - node myapp.js
+- window_name: email
+  layout: even-horizontal
+  panes:
+    - node myapp.js
+    - node myapp.js
+- window_name: alert
+  layout: tiled
+  panes:
+    - node myapp.js
+    - node myapp.js
+    - node myapp.js
+- window_name: email
+  layout: tiled
+  panes:
+    - node myapp.js
+- window_name: channel
+  layout: tiled
+  panes:
+    - node myapp.js
+    - node myapp.js
+    - node myapp.js
+    - node myapp.js
+- window_name: nlp
+  layout: tiled
+  panes:
+    - build.sh

@@ -1,0 +1,4 @@
+docker run --hostname=redis -d redis
+docker run --hostname=mq -e RABBITMQ_DEFAULT_USER=rabbitmq -e RABBITMQ_DEFAULT_PASS=rabbitmq -d rabbitmq:3-management
+docker run -v /home/sumanta/datastore/mongo:/data/db --hostname=db -d mongo:2.6.6
+sudo bash ./dns-update

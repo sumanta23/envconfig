@@ -70,7 +70,7 @@ function tubeplay() {
 
 alias tubeplay=tubeplay
 
-export PRIVATE_BIN=~/private.bin
+export PRIVATE_BIN=~/pbin
 PATH=$PRIVATE_BIN:$PATH
 
 eval `dircolors ~/envconfig/dircolors.256dark`

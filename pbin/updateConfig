@@ -1,0 +1,6 @@
+
+cd /var/devConfigs
+git co -- .
+NGROKURL=`curl http://127.0.0.1:4040/inspect/http | grep -Eo 'https://[a-z0-9]*.ngrok.io' | head -1`
+echo $NGROKURL
+sed -i -E "s|https:\/\/myserver.com|"$NGROKURL"|" /var/devConfigs/devConfig.json

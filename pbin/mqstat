@@ -1,0 +1,1 @@
+sudo rabbitmqctl list_queues -p $1 name messages messages_ready messages_unacknowledged| sort -r -k 3 | awk 'BEGIN{printf "%35s %5s %5s %5s\n", "Name","TQ","InQ","InProc" } ($2>0){printf "%35s %5d %5d %5d\n", $1,$2,$3,$4}'
