@@ -597,7 +597,7 @@ endif
 
 
 " binding to grep word under cursor
-nnoremap <Leader>g :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <Leader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " random leader settings
 nnoremap <Leader>vim :e ~/.vimrc<CR>
