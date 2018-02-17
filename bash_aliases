@@ -3,7 +3,7 @@
 export TERM=xterm-256color
 
 export EDITOR=vim
-export SW_HOME=/home/sam/sw
+export SW_HOME="$HOME/sw"
 #Set env variables
 export JAVA_HOME=$SW_HOME/jdk1.8.0_45
 #export JAVA_HOME=$SW_HOME/jdk-9
