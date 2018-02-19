@@ -264,6 +264,7 @@ set udir=~/.vim/.vimtemp/undo//
 "change .viminfo file location"
 set viminfo+=n~/.vim/.viminfo
 
+
 " quickfix settings
 augroup vimrcQfClose
     autocmd!
@@ -562,7 +563,6 @@ let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'package.json']
 "let g:ctrlp_user_command = 'find %s -type f' 
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bin|dist|git|build|unittests)|(\.(swp|ico|git|svn))$'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
 
 
 "open gblame

@@ -74,3 +74,9 @@ export PRIVATE_BIN=~/pbin
 PATH=$PRIVATE_BIN:$PATH
 
 eval `dircolors ~/envconfig/dircolors.256dark`
+
+
+alias dnetps="docker ps -q | xargs docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
+alias dstopall="docker ps -q | xargs docker stop"
+alias drmall="docker ps -a -q | xargs docker rm"
+alias drmstale="docker images |awk '{if(\$1=='<none>') print \$3}' | docker rmi"

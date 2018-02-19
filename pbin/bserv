@@ -1,0 +1,5 @@
+sudo systemctl $1 redis-server
+sudo systemctl $1 haproxy
+sudo systemctl $1 rabbitmq-server
+sudo systemctl $1 mongod
+

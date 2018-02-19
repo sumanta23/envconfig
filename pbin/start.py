@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-#install pip & libtimux
+#install pip & libtmux
 import libtmux
 import yaml
 import sys
@@ -88,35 +88,45 @@ def main(sessionObj, action, doc, args):
             winObj.select_layout(window['layout'])
     killwindow(sessionObj, 'bash')
 
-def createServer():
+def createServer(session_name):
     server = libtmux.Server()
     session = None
+    if session_name is None:
+        session_name = "server"
+
     try:
-        session = server.find_where({ "session_name": "server" })
+        session = server.find_where({ "session_name": session_name })
     except:
         print("Unexpected error:", sys.exc_info()[0])
 
     if session is None:
-        session = server.new_session("server")
+        session = server.new_session(session_name)
     return session
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='starts bot servers.')
     parser.add_argument('action', help='start or stop etc')
-    parser.add_argument('server', type=str, nargs='+', help='bot base rtm alert email channel nlp', default='base bot rtm')
+    parser.add_argument('server', type=str, nargs='+', help='app admin', default='app admin')
     list_servers = parser.parse_args().server
     action = parser.parse_args().action
     print list_servers
     print action
 
-    sessionObj = createServer()
     script_dir = os.path.dirname(__file__)
     rel_path = "server.yaml"
+
+    cwd = os.getcwd()
+    cur_file_path = os.path.join(cwd, rel_path)
+    if os.path.isfile(cur_file_path):
+        script_dir=cwd
+
     abs_file_path = os.path.join(script_dir, rel_path)
+
     with open(abs_file_path, 'r') as f:
         doc = yaml.load(f)
 
     if list_servers is None:
-        list_servers = ['bot', 'base', 'rtm']
+        list_servers = ['app', 'admin']
+    sessionObj = createServer(doc["session_name"])
     main(sessionObj, action, doc, list_servers)

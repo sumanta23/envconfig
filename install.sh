@@ -21,3 +21,8 @@ ln -s ${PWD}/Xresources ~/.Xresources
 ln -s ${PWD}/pbin ~/pbin
 
 #ln -s ${PWD}/xinitrc ~/.xinitrc
+
+echo "installing ngrok..."
+cd ${PWD}/pbin/
+curl -sO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip  | xargs unzip -o ngrok-stable-linux-amd64.zip;rm ngrok-stable-linux-amd64.zip
+cd -
