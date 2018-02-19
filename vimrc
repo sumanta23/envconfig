@@ -42,6 +42,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'mbbill/undotree'
 
 "repository plugin
 Plugin 'tpope/vim-fugitive'
@@ -57,6 +60,9 @@ Plugin 'jmcantrell/vim-virtualenv'
 "javascript
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
+Plugin 'groenewege/vim-less'
+Plugin 'briancollins/vim-jst'
+Plugin 'kchmck/vim-coffee-script'
 
 
 
@@ -122,7 +128,10 @@ set so=7
 set wildmenu
 
 " Ignore compiled files
-set wildignore=*.o,*~,*.pyc,*.class,*.so,*.swp,*.zip
+set wildignore+=*.o,*~,*.pyc,*.class,*.so,*.swp,*.zip,*/tmp/*
+
+set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+set virtualedit=onemore
 
 "Always show current position
 set ruler
@@ -254,8 +263,6 @@ set udir=~/.vim/.vimtemp/undo//
 
 "change .viminfo file location"
 set viminfo+=n~/.vim/.viminfo
-
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " quickfix settings
 augroup vimrcQfClose
@@ -587,6 +594,7 @@ nmap <F8>  :Tagbar<CR>
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
+  let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
