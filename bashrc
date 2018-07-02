@@ -31,6 +31,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 PS1='\e[32;4m\u:\e[0m\w\e[0m $(__git_ps1 "(%s)")$(evil_git_dirty)\n\$> '
+PROMPT_COMMAND='echo -en "\033]0;$(whoami) | $(pwd|cut -d "/" -f 4-100)\a"'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -65,6 +66,10 @@ alias vi='vim'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_machine ]; then
+    . ~/.bash_machine
 fi
 
 # enable programmable completion features (you don't need to enable

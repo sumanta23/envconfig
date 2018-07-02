@@ -1,4 +1,4 @@
-
+"set nocompatible
 " Auto reload
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -19,7 +19,7 @@ Plugin 'VundleVim/Vundle.vim'
 "code snippets
 Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+"Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
 "Plugin 'kana/vim-smartinput'
@@ -43,7 +43,7 @@ Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
 Plugin 'mbbill/undotree'
 
 "repository plugin

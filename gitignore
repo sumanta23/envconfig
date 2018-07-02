@@ -48,6 +48,7 @@ sdist/
 # Nodejs
 ###############
 node_modules
+package-lock.json
 
 ####################
 #Ctags

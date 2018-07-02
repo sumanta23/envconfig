@@ -5,9 +5,9 @@ export TERM=xterm-256color
 export EDITOR=vim
 export SW_HOME="$HOME/sw"
 #Set env variables
-export JAVA_HOME=$SW_HOME/jdk1.8.0_45
+#export JAVA_HOME=$SW_HOME/jdk1.8.0_45
 #export JAVA_HOME=$SW_HOME/jdk-9
-export M2_HOME=$SW_HOME/apache-maven-3.3.3
+export M2_HOME=$SW_HOME/apache-maven-3.5.3
 export ANT_HOME=$SW_HOME/apache-ant-1.9.4
 export GRADLE_HOME=$SW_HOME/gradle-2.3
 export SUBLIME_HOME=$SW_HOME/sublime_test_3
@@ -76,7 +76,8 @@ PATH=$PRIVATE_BIN:$PATH
 eval `dircolors ~/envconfig/dircolors.256dark`
 
 
-alias dnetps="docker ps -q | xargs docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
-alias dstopall="docker ps -q | xargs docker stop"
-alias drmall="docker ps -a -q | xargs docker rm"
+alias dnetps="docker ps -q | xargs -r docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
+alias dstopall="docker ps -q | xargs -r docker stop"
+alias drmall="docker ps -a -q | xargs -r docker rm"
 alias drmstale="docker images |awk '{if(\$1=='<none>') print \$3}' | docker rmi"
+alias _ag="ag -g"

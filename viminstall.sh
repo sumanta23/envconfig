@@ -10,4 +10,4 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 #install ctags
 #sudo apt-get install ctags
 
-vim +PluginInstall +qall
+vim  +PluginInstall +qall
