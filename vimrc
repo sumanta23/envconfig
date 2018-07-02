@@ -1,4 +1,3 @@
-"set nocompatible
 " Auto reload
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -18,11 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 "code snippets
 Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
-
-"Plugin 'kana/vim-smartinput'
 
 "vim editor beautify
 Plugin 'bling/vim-bufferline'
@@ -31,9 +26,7 @@ Plugin 'altercation/vim-colors-solarized'
 
 "code navigation
 Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdTree'
-Plugin 'majutsushi/tagbar'
 
 "code editing
 Plugin 'scrooloose/nerdcommenter'
@@ -43,7 +36,6 @@ Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-"Plugin 'jiangmiao/auto-pairs'
 Plugin 'mbbill/undotree'
 
 "repository plugin
@@ -95,7 +87,7 @@ syntax on
 filetype plugin on
 filetype indent on
 filetype plugin indent on
-set mouse=a                 " Automatically enable mouse usage
+set mouse=r                 " Automatically enable mouse usage " use r instead of a
 set mousehide               " Hide the mouse cursor while typing
 scriptencoding utf-8
 set list
@@ -112,7 +104,7 @@ vnoremap <C-d> "+d
 " Always show the status line
 set laststatus=2
 set noshowmode
-"set cursorline
+"set cursorline      //at times annoying to see entire line
 set ttimeoutlen=50
 
 if exists('$TMUX')
@@ -196,11 +188,6 @@ set tm=500
 set number
 "set relativenumber
 
-"colorscheme desert
-"colorscheme badwolf
-"let g:badwolf_darkgutter = 1
-"set background=dark
-
 " Use spaces instead of tabs
 set expandtab
 
@@ -264,6 +251,7 @@ set udir=~/.vim/.vimtemp/undo//
 "change .viminfo file location"
 set viminfo+=n~/.vim/.viminfo
 
+set timeoutlen=3000
 
 " quickfix settings
 augroup vimrcQfClose
@@ -392,7 +380,6 @@ nmap <leader>x :Bclose<cr>
 " Close all the buffers
 map <leader>cb :1,1000 bd!<cr>
 
-set timeoutlen=3000
 
  " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
 map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
@@ -533,6 +520,10 @@ map <leader>cc :botright cope<cr>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>cm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
+
+"""""""""""""""""""""""""""""""""""""""""
+"""   PLUGIN Settings
+"""""""""""""""""""""""""""""""""""""""""
 
 "configure syntastics
 let g:syntastic_enable_highlighting=0
