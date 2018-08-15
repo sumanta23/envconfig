@@ -1,0 +1,5 @@
+sudo pip install numpy
+sudo pip install matplotlib
+sudo pip install tflearn
+sudo pip install tensorflow
+sudo pip install tqdm
