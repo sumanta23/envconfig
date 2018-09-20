@@ -539,6 +539,11 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
 
+"eslint for syntastic
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_error_symbol = "✗"
+
 
 
 "configure ctrlp.vim
