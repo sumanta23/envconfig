@@ -2,6 +2,7 @@
 .vimtemp/
 autoload/
 bundle/
+**/.DS_Store
 
 # java related
 ################

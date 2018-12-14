@@ -13,6 +13,10 @@ export GRADLE_HOME=$SW_HOME/gradle-2.3
 export SUBLIME_HOME=$SW_HOME/sublime_test_3
 PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin:$SUBLIME_HOME:$PATH
 
+#  source git auto-complete
+if [ -f ~/.git-prompt.sh ]; then
+    . ~/envconfig/git-prompt.sh
+fi
 if [ -f /usr/share/git/git-prompt.sh ]; then
     source /usr/share/git/git-prompt.sh
 fi
@@ -50,6 +54,19 @@ alias flame='sudo perf script | stackcollapse-perf.pl | flamegraph.pl'
 #venv activate
 alias venv='source .venv/bin/activate'
 
+# added by Miniconda2 installer
+export PATH=$HOME"/miniconda2/bin:$PATH"
+. $HOME/miniconda2/etc/profile.d/conda.sh
+
+
+os=$(uname -s)
+if [ $os == "Darwin" ]; then
+    export CLICOLOR=YES
+    alias ctags="`brew --prefix`/bin/ctags"
+else
+    eval `dircolors ~/envconfig/dircolors.256dark`
+fi
+
 #ctags generator
 function createCtags(){
     AG=`which ag`
@@ -62,7 +79,6 @@ function createCtags(){
 }
 alias ctag=createCtags
 
-
 function tubeplay() {
     #youtube-dl $1 -o - |  mplayer -vo aa -monitorpixelaspect 0.5 -
     mplayer <(youtube-dl -o - $1)
@@ -73,11 +89,8 @@ alias tubeplay=tubeplay
 export PRIVATE_BIN=~/pbin
 PATH=$PRIVATE_BIN:$PATH
 
-eval `dircolors ~/envconfig/dircolors.256dark`
-
-
 alias dnetps="docker ps -q | xargs -r docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
 alias dstopall="docker ps -q | xargs -r docker stop"
 alias drmall="docker ps -a -q | xargs -r docker rm"
 alias drmstale="docker images |awk '{if(\$1=='<none>') print \$3}' | docker rmi"
-alias _ag="ag -g"
+alias __ag="ag -g"
