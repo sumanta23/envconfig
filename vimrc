@@ -43,7 +43,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 "python
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 Plugin 'jmcantrell/vim-virtualenv'
 
 "java

@@ -16,4 +16,4 @@ URL=$(curl -X PUT https://srtnr.herokuapp.com/api/shorturl -H 'content-type: app
 echo $URL
 
 #python3 -m http.server 54321
-python -m fileserve 54321
+fileserve.py  54321

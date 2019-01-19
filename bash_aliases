@@ -55,8 +55,10 @@ alias flame='sudo perf script | stackcollapse-perf.pl | flamegraph.pl'
 alias venv='source .venv/bin/activate'
 
 # added by Miniconda2 installer
-export PATH=$HOME"/miniconda2/bin:$PATH"
-. $HOME/miniconda2/etc/profile.d/conda.sh
+if [ -x $HOME/miniconda2/bin ]; then
+    export PATH=$HOME"/miniconda2/bin:$PATH"
+    . $HOME/miniconda2/etc/profile.d/conda.sh
+fi
 
 
 os=$(uname -s)

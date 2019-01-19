@@ -174,7 +174,8 @@ class Handler(BaseHTTPRequestHandler):
 
 
     def repeat_to_length(self, string_to_expand, length):
-        return (string_to_expand * int(math.floor(length/len(string_to_expand))+1))
+        #return (string_to_expand * int(math.floor(length/len(string_to_expand))+1))
+        return (string_to_expand * int(length))
 
     def list_directory(self, path):
         """Helper to produce a directory listing (absent index.html).
@@ -185,7 +186,6 @@ class Handler(BaseHTTPRequestHandler):
         try:
             list = os.listdir(path)
         except Exception as e:
-            print(str(e))
             self.send_error(404, "No permission to list directory")
             return None
         list.sort(key=lambda a: a.lower())
@@ -195,13 +195,12 @@ class Handler(BaseHTTPRequestHandler):
         tree="";
         x=displaypath.split("/")[1:-1]
         xlen=len(x)
-        print(x)
         textp=""
+        dot = self.repeat_to_length("../", xlen)
         for e in x:
             textp=textp+e+"/"
-            tree=tree+"/"+'<a href="{0}">{1}</a>\n'.format(self.repeat_to_length("../",xlen)+textp, cgi.escape(e))
-            xlen=xlen-1
-        print(tree)
+            tree=tree+"/"+'<a href="{0}">{1}</a>\n'.format(dot+textp, cgi.escape(e))
+        tree ='<a href="{0}">{1}</a>\n'.format(dot, ".") + tree
 
         if not displaypath.endswith('/'):
             displaypath = displaypath + "/";

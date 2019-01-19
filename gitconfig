@@ -8,17 +8,22 @@
     eol = lf
 [color]
     ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    pager = true
 [gui]
     encoding = utf-8
 [diff]
-    tool = vimdiff 
+    tool = vimdiff
 [difftool]
     prompt = false
 [merge]
     tool = vimdiff
     conflictstyle = diff3
 [mergetool]
-    prompt = false    
+    prompt = false
 [push]
     default = tracking
 [color "diff"]
@@ -43,7 +48,7 @@
 [include]
     path = ~/.gitconfig.local
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
