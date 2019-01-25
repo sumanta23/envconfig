@@ -17,7 +17,7 @@ def createwindow(session, name, repo_path):
         if window.name == name:
             tempwindow = window
     if tempwindow is None:
-        print repo_path
+        print(repo_path)
         tempwindow = session.new_window(attach=False, window_name=name, start_directory=repo_path)
     return tempwindow
 
@@ -110,8 +110,8 @@ if __name__ == '__main__':
     parser.add_argument('server', type=str, nargs='+', help='app admin', default='app admin')
     list_servers = parser.parse_args().server
     action = parser.parse_args().action
-    print list_servers
-    print action
+    print(list_servers)
+    print(action)
 
     script_dir = os.path.dirname(__file__)
     rel_path = "server.yaml"
