@@ -30,8 +30,8 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PS1='\e[32;4m\u:\e[0m\w\e[0m $(__git_ps1 "(%s)")$(evil_git_dirty)\n\$> '
-PROMPT_COMMAND='echo -en "\033]0;$(whoami) | $(pwd|cut -d "/" -f 4-100)\a"'
+PS1='\e[32;4m\u:\e[0m\w\e[0m $(__git_ps1 "(%s)")$(evil_git_dirty) \e[33;4m[$(date +%H:%M:%S)]\e[0m \n\$> '
+PROMPT_COMMAND='echo -en "\033]0;$(whoami) | $(pwd|cut -d "/" -f 4-100)\a" '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

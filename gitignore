@@ -22,7 +22,12 @@ bundle/
 log.txt
 *.log
 *.patch
+.gradle
+.vscode
 
+#vagrant
+########
+.vagrant/
 
 # python related
 #################
