@@ -95,10 +95,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 
-set $workspace1 "1 chrome"
-set $workspace2 "2 terminal"
-set $workspace3 "3 sublime"
-set $workspace4 "4 git"
+set $workspace1 "1 terminal"
+set $workspace2 "2 browser"
+set $workspace3 "3 git"
+set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
@@ -165,14 +165,22 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+#bar {
+#        status_command i3status
+#        #status_command i3blocks
+#        position bottom
+#        tray_output primary
+#        #mode hide
+#        workspace_buttons yes
+#}
 bar {
-        status_command i3status
-        #status_command i3blocks
-        position bottom
-        tray_output primary
-        #mode hide
-        workspace_buttons yes
+	font pango:Inconsolata 9
+	position bottom
+	tray_output none
+	#status_command ~/envconfig/bumblebee-status/bumblebee-status -m nic disk:root cpu memory battery date time pasink pasource dnf -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t solarized-powerline
+	status_command ~/envconfig/bumblebee-status/bumblebee-status -m nic cpu memory battery date time pasink pasource dnf -p root.path=/ time.format="%H:%M" date.format="%a, %d %b" -t solarized-powerline
 }
+
 
 
 
@@ -187,7 +195,7 @@ bindsym XF86AudioMute exec amixer set Master nmute
 
 bindsym $mod+x exec i3lock
 
-exec_always feh --bg-scale ~/Pictures/star-wars.jpg
+exec_always feh --bg-scale ~/Pictures/x.png
 
 # Widow Colours
 
