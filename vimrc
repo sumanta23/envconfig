@@ -186,7 +186,7 @@ set t_vb=
 set tm=500
 
 set number
-"set relativenumber
+set relativenumber
 
 " Use spaces instead of tabs
 set expandtab

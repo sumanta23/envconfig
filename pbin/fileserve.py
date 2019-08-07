@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 
 import os
-from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+try:
+    from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+except ImportError:
+    from http.server import BaseHTTPRequestHandler,HTTPServer
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import mimetypes
 import posixpath
 import shutil
@@ -14,10 +21,10 @@ import random
 import string
 import json
 import base64
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
+#try:
+#    from cStringIO import StringIO
+#except ImportError:
+#    from StringIO import StringIO
 
 USER="gustav"
 PASS=USER
