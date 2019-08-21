@@ -181,7 +181,12 @@ bar {
 	status_command ~/envconfig/bumblebee-status/bumblebee-status -m brightness cpu memory date time pasink pasource battery  -p root.path=/ time.format="%H:%M" date.format="%a, %d %b" -t solarized-powerline
 }
 
-
+#gaps
+for_window [class="^.*"] border pixel 2
+gaps inner 5
+gaps outer 1
+smart_gaps on
+smart_borders on
 
 
 # Startup Programs
