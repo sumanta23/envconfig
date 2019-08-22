@@ -96,3 +96,5 @@ alias dstopall="docker ps -q | xargs -r docker stop"
 alias drmall="docker ps -a -q | xargs -r docker rm"
 alias drmstale="docker images |awk '{if(\$1=='<none>') print \$3}' | docker rmi"
 alias __ag="ag -g"
+
+alias muxt="tmux attach -t base || tmux new -s base"
