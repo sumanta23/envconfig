@@ -96,9 +96,9 @@ bindsym $mod+a focus parent
 
 
 set $workspace1 "1 terminal"
-set $workspace2 "2 browser"
-set $workspace3 "3 git"
-set $workspace4 "4"
+set $workspace2 "2 chromium"
+set $workspace3 "3 firefox"
+set $workspace4 "4 thunar"
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
@@ -260,3 +260,11 @@ mode "$mode_display" {
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+p mode "$mode_display"
+
+
+#bind app to ws
+assign [class="Terminator" ] $workspace1
+assign [class="Chromium"] $workspace2
+assign [class="firefox"] $workspace3
+assign [class="Thunar"] $workspace4
+

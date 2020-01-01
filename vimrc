@@ -188,8 +188,8 @@ set tm=500
 set number
 set relativenumber
 
-" Use spaces instead of tabs
-set expandtab
+" Use tabs instead of spaces
+set noexpandtab
 
 " Be smart when using tabs ;)
 set smarttab
