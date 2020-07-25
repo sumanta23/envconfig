@@ -80,6 +80,7 @@ function createCtags(){
     fi
 }
 alias ctag=createCtags
+alias ctag="`brew --prefix`/bin/ctags"
 
 function tubeplay() {
     #youtube-dl $1 -o - |  mplayer -vo aa -monitorpixelaspect 0.5 -
