@@ -6,6 +6,7 @@
     autocrlf = false
     safecrlf = true
     eol = lf
+	compression = 0
 [color]
     ui = true
     diff = auto
@@ -30,6 +31,7 @@
     meta = blue black bold
 [alias]
     df = diff -w
+	cpx = cherry-pick -x
     pu = pull --rebase
     lg = log --graph --pretty=format:'%C(green)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)<%an>%Creset' --abbrev-commit --date=relative
     lh = log --graph --oneline --decorate --all
@@ -52,3 +54,7 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[http]
+	postBuffer = 1048576000
+[https]
+	postBuffer = 1048576000

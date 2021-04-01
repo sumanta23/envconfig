@@ -79,8 +79,9 @@ function createCtags(){
         ctags -R --languages=$1 --exclude=.git --exclude=logs --exclude=node_modules
     fi
 }
-alias ctag=createCtags
-alias ctag="`brew --prefix`/bin/ctags"
+#alias ctag=createCtags
+alias ctags="`brew --prefix`/bin/ctags"
+alias ctag="ctags -R --exclude=.git --exclude=log *"
 
 function tubeplay() {
     #youtube-dl $1 -o - |  mplayer -vo aa -monitorpixelaspect 0.5 -

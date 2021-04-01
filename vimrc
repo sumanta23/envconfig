@@ -31,7 +31,7 @@ Plugin 'scrooloose/nerdTree'
 "code editing
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
@@ -46,16 +46,13 @@ Plugin 'airblade/vim-gitgutter'
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'jmcantrell/vim-virtualenv'
 
-"java
-"Plugin 'artur-shaik/vim-javacomplete2'
-
 "javascript
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
 Plugin 'briancollins/vim-jst'
 Plugin 'kchmck/vim-coffee-script'
-
+Plugin 'eslint/eslint'
 
 
 " All of your Plugins must be added before the following line
@@ -99,6 +96,19 @@ set clipboard=unnamedplus
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
+
+
+" syntastic status line
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
 
 
 " Always show the status line
@@ -194,9 +204,9 @@ set noexpandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
