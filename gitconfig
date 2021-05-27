@@ -6,7 +6,7 @@
     autocrlf = false
     safecrlf = true
     eol = lf
-	compression = 0
+    compression = 0
 [color]
     ui = true
     diff = auto
@@ -14,6 +14,10 @@
     branch = auto
     interactive = auto
     pager = true
+[fetch]
+    prune = true
+[push]
+    default = tracking
 [gui]
     encoding = utf-8
 [diff]
@@ -25,13 +29,11 @@
     conflictstyle = diff3
 [mergetool]
     prompt = false
-[push]
-    default = tracking
 [color "diff"]
     meta = blue black bold
 [alias]
     df = diff -w
-	cpx = cherry-pick -x
+    cpx = cherry-pick -x
     pu = pull --rebase
     lg = log --graph --pretty=format:'%C(green)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)<%an>%Creset' --abbrev-commit --date=relative
     lh = log --graph --oneline --decorate --all
