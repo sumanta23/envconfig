@@ -17,7 +17,7 @@
 [fetch]
     prune = true
 [push]
-    default = tracking
+    default = upstream
 [gui]
     encoding = utf-8
 [diff]
@@ -32,18 +32,20 @@
 [color "diff"]
     meta = blue black bold
 [alias]
+    s = status
+    co = checkout
+    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    undo = reset HEAD~1 --mixed
+    save = !git add -A && git commit -m 'chore: savepoint'
     df = diff -w
     cpx = cherry-pick -x
     pu = pull --rebase
     lg = log --graph --pretty=format:'%C(green)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)<%an>%Creset' --abbrev-commit --date=relative
     lh = log --graph --oneline --decorate --all
-    lc = diff-tree --no-commit-id --name-only -r
     ch = show --stat --oneline
-    st = status
-    co = checkout
-    br = branch
     dlf = show --pretty="" --name-only
     gdiff = difftool --tool=vimdiff
+    lc = diff-tree --no-commit-id --name-only -r
     hub = !git daemon --base-path=. --export-all --enable=receive-pack --reuseaddr --informative-errors --verbose
     serve = !git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
     web = !git instaweb --httpd=webrick
