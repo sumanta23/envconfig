@@ -121,32 +121,39 @@ grubinstall(){
 }
 
 archchrootrun(){
-	cp ${0} /mnt/root
+	cp ${0} /mnt/root/
 	chmod 755 /mnt/root/$(basename "${0}")
-	arch-chroot /mnt /root/$(basename "${0}") --chroot ${1}
+	arch-chroot /mnt /root/$(basename "${0}") ${1}
 	rm /mnt/root/$(basename "${0}")
 	echo "exit"
 }
 
-tillchroot(){
+configurepartition(){
     setntp
     chooseeditor
     diskpartition
     mountdrive
+}
+
+installsystem(){
     syncmirror
     dopacstrap
     dogenfstab
     #dochroot
 }
 
-postchroot(){
+configuresystem(){
     archchrootrun settimezone
     archchrootrun localegen
     archchrootrun sethostname
     archchrootrun makeinitcpio
     archchrootrun setrootpasswd
     archchrootrun enabledhcp
-    grubinstall
-    exit
+    archchrootrun grubinstall
     unmountdrive
+}
+
+main(){
+    event=$1
+    $1
 }
