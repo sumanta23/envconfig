@@ -4,6 +4,10 @@ hostname="basehost"
 locale="en_US"
 dev="/dev/sda"
 
+pressanykey(){
+	read -n1 -p "${txtpressanykey}"
+}
+
 setntp(){
    echo "setting ntp"
    timedatectl set-ntp true
@@ -19,6 +23,7 @@ chooseeditor(){
 syncmirror(){
     echo "syncing  mirror"
     pacman -Syy
+    pressanykey
 }
 
 rebootpc(){
@@ -34,7 +39,7 @@ diskpartition(){
     sectors=$(sfdisk -s "$dev")
     totalsector=$((sectors * 2))
     swapsize=2095104
-    primary=$((totalsector - swapsize))
+    primary=$((totalsector - swapsize - 2048))
     swapstart=$((primary + 2048))
     echo $totalsector $swapsize $primary
 
@@ -51,14 +56,17 @@ diskpartition(){
 EOF
 
     sfdisk "$dev" < partition
+    pressanykey
     mkfs.ext4 "${dev}1"
     mkswap "${dev}2"
+    pressanykey
 }
 
 mountdrive(){
     echo "mounting drives"
     mount /dev/sda1 /mnt
     swapon /dev/sda2
+    pressanykey
 }
 
 unmountdrive(){
@@ -67,13 +75,14 @@ unmountdrive(){
 }
 
 dopacstrap(){
-    echo "pacstrap /mnt base linux linux-firmware vim"
-    pacstrap /mnt base linux linux-firmware vim
+    echo "pacstrap /mnt base linux linux-firmware vim dhcp"
+    pacstrap /mnt base linux linux-firmware vim dhcp
 }
 
 dogenfstab(){
     echo "genfstab"
     genfstab -U /mnt >> /mnt/etc/fstab
+    pressanykey
 }
 
 dochroot(){
@@ -92,12 +101,12 @@ localegen(){
     sed -i '/#'${locale}'.UTF-8/s/^#//g' /etc/locale.gen
     echo "LANG=${locale}.UTF-8" > /etc/locale.conf
     locale-gen
-    
 }
 
 sethostname(){
     echo "setting hostname"
     echo "${hostname}" > /etc/hostname
+    pressanykey
 }
 
 makeinitcpio(){
@@ -108,6 +117,10 @@ makeinitcpio(){
 setrootpasswd(){
     echo "setting root passwd"
     passwd root
+}
+
+enabledhcp(){
+    systemctl enable dhcpcd
 }
 
 grubinstall(){
@@ -134,6 +147,7 @@ postchroot(){
     sethostname
     makeinitcpio
     setrootpasswd
+    enabledhcp
     grubinstall
     unmountdrive
 }
