@@ -110,8 +110,9 @@ setrootpasswd(){
 }
 
 configurenetwork(){
-    pacman -S NetworkManager
+    pacman -S networkmanager
     systemctl enable NetworkManager
+    systemctl start NetworkManager
 }
 
 grubinstall(){
@@ -120,6 +121,20 @@ grubinstall(){
     grub-install /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
 }
+
+aurbase(){
+	pacman -S base-devel
+}
+
+installgnome(){
+	pacman -S --noconfirm xorg xorg-server
+	pacman -S gnome-shell nautilus gnome-terminal gnome-tweak-tool gnome-control-center xdg-user-dirs gdm gnome-keyring
+	# For labtops
+	pacman -S xf86-input-synaptics
+	systemctl enable gdm.service
+	#systemctl start gdm.service
+}
+
 
 archchrootrun(){
 	cp ${0} /mnt/root/
@@ -150,6 +165,7 @@ configuresystem(){
     archchrootrun makeinitcpio
     archchrootrun setrootpasswd
     archchrootrun configurenetwork
+    archchrootrun aurbase
     archchrootrun grubinstall
     unmountdrive
 }
