@@ -4,10 +4,6 @@ hostname="basehost"
 locale="en_US"
 dev="/dev/sda"
 
-pressanykey(){
-	read -n1 -p "${txtpressanykey}"
-}
-
 setntp(){
    echo "setting ntp"
    timedatectl set-ntp true
@@ -23,7 +19,6 @@ chooseeditor(){
 syncmirror(){
     echo "syncing  mirror"
     pacman -Syy
-    pressanykey
 }
 
 rebootpc(){
@@ -56,17 +51,14 @@ diskpartition(){
 EOF
 
     sfdisk "$dev" < partition
-    pressanykey
     mkfs.ext4 "${dev}1"
     mkswap "${dev}2"
-    pressanykey
 }
 
 mountdrive(){
     echo "mounting drives"
     mount /dev/sda1 /mnt
     swapon /dev/sda2
-    pressanykey
 }
 
 unmountdrive(){
@@ -82,7 +74,6 @@ dopacstrap(){
 dogenfstab(){
     echo "genfstab"
     genfstab -U /mnt >> /mnt/etc/fstab
-    pressanykey
 }
 
 dochroot(){
@@ -106,7 +97,6 @@ localegen(){
 sethostname(){
     echo "setting hostname"
     echo "${hostname}" > /etc/hostname
-    pressanykey
 }
 
 makeinitcpio(){
@@ -130,6 +120,14 @@ grubinstall(){
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
+archchrootrun(){
+	cp ${0} /mnt/root
+	chmod 755 /mnt/root/$(basename "${0}")
+	arch-chroot /mnt /root/$(basename "${0}") --chroot ${1}
+	rm /mnt/root/$(basename "${0}")
+	echo "exit"
+}
+
 tillchroot(){
     setntp
     chooseeditor
@@ -138,16 +136,17 @@ tillchroot(){
     syncmirror
     dopacstrap
     dogenfstab
-    dochroot
+    #dochroot
 }
 
 postchroot(){
-    settimezone
-    localegen
-    sethostname
-    makeinitcpio
-    setrootpasswd
-    enabledhcp
+    archchrootrun settimezone
+    archchrootrun localegen
+    archchrootrun sethostname
+    archchrootrun makeinitcpio
+    archchrootrun setrootpasswd
+    archchrootrun enabledhcp
     grubinstall
+    exit
     unmountdrive
 }
