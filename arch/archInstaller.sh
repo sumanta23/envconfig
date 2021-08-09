@@ -109,9 +109,9 @@ setrootpasswd(){
     passwd root
 }
 
-enabledhcp(){
-    pacman -Sy dhcp
-    systemctl enable dhcpcd
+configurenetwork(){
+    pacman -S NetworkManager
+    systemctl enable NetworkManager
 }
 
 grubinstall(){
@@ -149,7 +149,7 @@ configuresystem(){
     archchrootrun sethostname
     archchrootrun makeinitcpio
     archchrootrun setrootpasswd
-    archchrootrun enabledhcp
+    archchrootrun configurenetwork
     archchrootrun grubinstall
     unmountdrive
 }
