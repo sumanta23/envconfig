@@ -30,15 +30,34 @@ rebootpc(){
 
 
 diskpartition(){
-    printf "n\np\n1\n\n+1G\nn\n2\n\n\nw\n" | sudo fdisk "$dev"
-    mkfs.ext4 "${dev}2"
-    mkswap "${dev}1"
+    sectors=$(sfdisk -s "$dev")
+    totalsector=$((sectors * 2))
+    swapsize=2095104
+    primary=$((totalsector - swapsize))
+    swapstart=$((primary + 2048))
+    echo $totalsector $swapsize $primary
+
+    
+
+    cat <<EOF >>partition
+    lebel: dos
+    label-id: 0xd9c2d64f
+    unit: sectors
+    sector-size: 512
+
+    /dev/sda1 : start= 2048, size= $primary, type=83
+    /dev/sda2 : start= $swapstart, size= $swapsize, type=82
+EOF
+
+    sfdisk "$dev" < partition
+    mkfs.ext4 "${dev}1"
+    mkswap "${dev}2"
 }
 
 mountdrive(){
     echo "mounting drives"
-    mount /dev/sda2 /mnt
-    swapon /dev/sda1
+    mount /dev/sda1 /mnt
+    swapon /dev/sda2
 }
 
 unmountdrive(){
@@ -100,7 +119,7 @@ grubinstall(){
 tillchroot(){
     setntp
     chooseeditor
-    #diskpartition
+    diskpartition
     mountdrive
     syncmirror
     dopacstrap
