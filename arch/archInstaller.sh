@@ -30,6 +30,7 @@ rebootpc(){
 
 
 diskpartition(){
+    dd if=/dev/zero of=$dev bs=512 count=1 conv=notrunc
     sectors=$(sfdisk -s "$dev")
     totalsector=$((sectors * 2))
     swapsize=2095104
@@ -40,7 +41,7 @@ diskpartition(){
     
 
     cat <<EOF >>partition
-    lebel: dos
+    label: dos
     label-id: 0xd9c2d64f
     unit: sectors
     sector-size: 512
