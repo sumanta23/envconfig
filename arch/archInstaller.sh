@@ -110,12 +110,13 @@ setrootpasswd(){
 }
 
 enabledhcp(){
+    pacman -Sy dhcp
     systemctl enable dhcpcd
 }
 
 grubinstall(){
     echo "installing grub"
-    pacman -S grub
+    pacman -Sy grub
     grub-install /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
 }
@@ -157,3 +158,5 @@ main(){
     event=$1
     $1
 }
+
+main $1
