@@ -4,6 +4,10 @@ autoload/
 bundle/
 **/.DS_Store
 
+#vs code
+.vscode/settings.json
+.vscode/**/*
+
 # java related
 ################
 **/.settings/

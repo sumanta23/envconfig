@@ -28,6 +28,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdTree'
 
+Plugin 'preservim/tagbar'
+
 "code editing
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
@@ -551,7 +553,8 @@ vnoremap <Leader>a :Tabularize /
 map <Leader>@ :'<,'>norm! @
 
 "configure Ctags
-set tags=./tags;/,~/.vimtags
+set autochdir
+set tags=tags;/
 
 " type g<C-]> to get list  and C-t to come back
 nnoremap <C-]> g<C-]>

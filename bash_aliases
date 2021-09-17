@@ -31,12 +31,8 @@ alias g='git'
 alias youtube='youtube-dl --extract-audio --audio-format mp3'
 
 # Set Alias Commands
-alias arq='mvn clean install -Pjboss_managed_local | tee /tmp/log.txt'
-alias junit='mvn clean install | tee /tmp/log.txt'
 alias findtxt='grep -rnw . -e'
-alias j9='~/sw/jdk-9/bin/jshell'
 alias gstd="git stash show -p"
-alias gvim="gvim 2>/dev/null"
 alias monitor='xrandr --output VGA1 --auto --right-of LVDS1'
 alias primary='xrandr --output VGA1 --off'
 
@@ -79,9 +75,9 @@ function createCtags(){
         ctags -R --languages=$1 --exclude=.git --exclude=logs --exclude=node_modules
     fi
 }
-#alias ctag=createCtags
+alias ctag=createCtags
 alias ctags="`brew --prefix`/bin/ctags"
-alias ctag="ctags -R --exclude=.git --exclude=log *"
+#alias ctag="ctags -R --exclude=.git --exclude=log *"
 
 function tubeplay() {
     #youtube-dl $1 -o - |  mplayer -vo aa -monitorpixelaspect 0.5 -
