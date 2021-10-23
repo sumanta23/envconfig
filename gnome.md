@@ -22,10 +22,10 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,max
 
 ### Lock screen and background image
 ```sh
-gsettings set org.gnome.desktop.background picture-uri 'file:///path/to/my/picture.jpg'
+gsettings set org.gnome.desktop.background picture-uri 'file:///home/sam/.local/share/backgrounds/2021-08-10-16-16-28-green_leaf_twig_trees_4527_2560x1600.jpg'
 ```
 ```sh
-gsettings set org.gnome.desktop.screensaver picture-uri 'file:///path/to/my/picture.jpg'
+gsettings set org.gnome.desktop.screensaver picture-uri 'file:///home/sam/.local/share/backgrounds/2021-08-10-16-16-28-green_leaf_twig_trees_4527_2560x1600.jpg'
 ```
 
 ### Disable top left hot corner
