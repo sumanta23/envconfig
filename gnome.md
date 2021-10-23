@@ -54,6 +54,7 @@ gsettings set org.gnome.desktop.peripherals.touchpad click-method 'fingers'
 ```
 
 ### Titlebar Height.
+> edit file ~/.config/gtk-3.0/gtk.css
 ```sh
 /* shrink headerbars (don't forget semicolons after each property) */
 headerbar {
