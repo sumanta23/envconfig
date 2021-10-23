@@ -62,7 +62,7 @@ if [ $os == "Darwin" ]; then
     export CLICOLOR=YES
     alias ctags="`brew --prefix`/bin/ctags"
 else
-    eval `dircolors ~/envconfig/dircolors.256dark`
+    eval `dircolors ~/envconfig/linux/dircolors.256dark`
 fi
 
 #ctags generator
