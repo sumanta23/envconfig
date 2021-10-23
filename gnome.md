@@ -7,12 +7,12 @@ To select new themes (move them to the appropriate directory and) use GNOME Twea
 
 ### For the GTK theme:
 ```ssh
-gsettings set org.gnome.desktop.interface gtk-theme theme-name
+gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark
 ```
 
 ### For the icon theme:
 ```ssh
-$ gsettings set org.gnome.desktop.interface icon-theme theme-name
+$ gsettings set org.gnome.desktop.interface icon-theme Arc
 ```
 
 ### Titlebar button order
