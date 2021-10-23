@@ -1,6 +1,6 @@
 # This is a comprehensive guide for gnome settings.
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://wiki.archlinux.org/title/GNOME#Advanced_settings)
+[![ARCH](https://cldup.com/dTxpPi9lDf.thumb.png)](https://wiki.archlinux.org/title/GNOME#Advanced_settings)
 
 ## Themes
 To select new themes (move them to the appropriate directory and) use GNOME Tweaks or the GSettings commands below:
