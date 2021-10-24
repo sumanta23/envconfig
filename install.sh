@@ -14,6 +14,9 @@ ln -s -f ${PWD}/tmux/tmux.conf ~/.tmux.conf
 ln -s -f ${PWD}/lang/settings.xml ~/.m2/settings.xml
 ln -s -f ${PWD}/lang/pmdrules.xml ~/.m2/pmdrules.xml
 
+echo installing ctags lib
+ln -s -f ${PWD}/lang/ctags ~/.ctags
+
 ln -s ${PWD}/pbin ~/pbin
 
 
