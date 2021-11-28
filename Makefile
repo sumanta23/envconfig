@@ -1,7 +1,6 @@
 all: bash git tmux vim ctags pbin ngrok
 
 bash:
-	ln -s -f ${PWD}/bashconfig/bashrc ~/.bashrc
 	ln -s -f ${PWD}/bashconfig/bash_aliases ~/.bash_aliases
 
 git:
