@@ -8,6 +8,13 @@ bundle/
 .vscode/settings.json
 .vscode/**/*
 
+###c or cpp
+#############
+*.o
+*.a
+*.so
+*.dylib
+
 # java related
 ################
 **/.settings/

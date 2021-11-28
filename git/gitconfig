@@ -64,3 +64,5 @@
 	postBuffer = 1048576000
 [https]
 	postBuffer = 1048576000
+[commit]
+	template = /Users/sumanta.nandi/envconfig/git/gitmessage
