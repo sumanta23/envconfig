@@ -26,6 +26,7 @@ pbin:
 	ln -s ${PWD}/pbin ~/pbin
 
 javaconfig:
+	mkdir -p ~/.m2
 	ln -s -f ${PWD}/lang/settings.xml ~/.m2/settings.xml
 	ln -s -f ${PWD}/lang/pmdrules.xml ~/.m2/pmdrules.xml
 
