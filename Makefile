@@ -1,3 +1,5 @@
+.PHONY:bash git tmux vim ctags pbin ngrok
+
 all: bash git tmux vim ctags pbin ngrok
 
 bash:
