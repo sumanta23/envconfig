@@ -28,8 +28,12 @@ javaconfig:
 	ln -s -f ${PWD}/lang/settings.xml ~/.m2/settings.xml
 	ln -s -f ${PWD}/lang/pmdrules.xml ~/.m2/pmdrules.xml
 
+xconfig:
+	ln -s ${PWD}/linux/xinitrc ~/.xinitrc
+	ln -s -f ${PWD}/linux/Xresources ~/.Xresources
+	ln -s -f ${PWD}/linux/gtkrc-2.0 ~/.gtkrc-2.0
 
 
 ngrok:
-	curl -sO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip  | xargs unzip -o ngrok-stable-linux-amd64.zip;rm ngrok-stable-linux-amd64.zip
+	curl -sO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip  | xargs unzip -d pbin/ -o ngrok-stable-linux-amd64.zip;rm ngrok-stable-linux-amd64.zip
 
