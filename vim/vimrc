@@ -68,7 +68,7 @@ call pathogen#infect()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
+" => General Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=700
@@ -208,6 +208,9 @@ set incsearch
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
+
+set updatetime=300 " Reduce time for highlighting other references
+set redrawtime=10000 " Allow more time for loading syntax on large files
 
 " For regular expressions turn magic on
 set magic
