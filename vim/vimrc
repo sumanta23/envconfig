@@ -48,7 +48,7 @@ Plugin 'airblade/vim-gitgutter'
 "javascript
 Plugin 'elzr/vim-json'
 Plugin 'eslint/eslint'
-
+Plugin 'yuezk/vim-js'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -66,34 +66,9 @@ call vundle#end()            " required
 call pathogen#infect()
 
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=700
-
-syntax on
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-filetype plugin indent on
-set mouse=r                 " Automatically enable mouse usage " use r instead of a
-set mousehide               " Hide the mouse cursor while typing
-scriptencoding utf-8
-set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-
-" system clipboard.
-set clipboard=unnamed
-set clipboard=unnamedplus
-inoremap <C-v> <ESC>"+pa
-vnoremap <C-c> "+y
-vnoremap <C-d> "+d
-
-
-" status bar colors
+""""""""""""""""""""""""""""""
+"" status bar colors        ""
+""""""""""""""""""""""""""""""
 au InsertEnter * hi statusline guifg=black guibg=#d7afff ctermfg=black ctermbg=magenta
 au InsertLeave * hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
 hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
@@ -145,11 +120,33 @@ hi User2 ctermfg=007 ctermbg=236 guibg=#303030 guifg=#adadad
 hi User3 ctermfg=236 ctermbg=236 guibg=#303030 guifg=#303030
 hi User4 ctermfg=239 ctermbg=239 guibg=#4e4e4e guifg=#4e4e4e
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Sets how many lines of history VIM has to remember
+set history=700
+
+syntax on
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+filetype plugin indent on
+set mouse=r                 " Automatically enable mouse usage " use r instead of a
+set mousehide               " Hide the mouse cursor while typing
+scriptencoding utf-8
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+
+
+" system clipboard.
+set clipboard=unnamed
+set clipboard=unnamedplus
+inoremap <C-v> <ESC>"+pa
+vnoremap <C-c> "+y
+vnoremap <C-d> "+d
+
 
 
 
@@ -266,14 +263,9 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
- 
-if has('gui_running')
-    colorscheme solarized
-    set background=dark
-endif
+
 
 let g:solarized_termcolors=256
-
 
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
@@ -319,6 +311,32 @@ autocmd FileType qf setlocal wrap linebreak
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%100v', 100)
+
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>ec :e ~/code/
+
+" disable arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+"configure macro
+map <Leader>@ :'<,'>norm! @
+
+"configure Ctags
+set autochdir
+set tags=tags;/
+
+" type g<C-]> to get list  and C-t to come back
+nnoremap <C-]> g<C-]>
+
+" binding to grep word under cursor
+nnoremap <Leader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -381,6 +399,18 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 
+augroup suffixes
+    autocmd!
+
+    let associations = [
+                \["javascript", ".js,.javascript,.es,.esx,.json"],
+                \["python", ".py,.pyw"]
+                \]
+
+    for ft in associations
+        execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
+    endfor
+augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -397,25 +427,16 @@ cmap w!! w !sudo tee % >/dev/null
 let mapleader = ","
 let g:mapleader = ","
 
-" Fast saving
-nmap <leader>w :w!<cr>
-" Fast quit
-nmap <leader>q :q!<cr>
-" Fast quit buffer
+"hint: Fast quit buffer: <leader>x
 nmap <leader>x :Bclose<cr>
-" Close all the buffers
+"hint: Close all the buffers: <leader>cb
 map <leader>cb :1,1000 bd!<cr>
-
-
- " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
-map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
-
 
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+"hint: Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap mj mz:m+<cr>`z
 nmap mk mz:m-2<cr>`z
 vmap mj :m'>+<cr>`<my`>mzgv`yo`z
@@ -457,7 +478,7 @@ map zz za
 nnoremap ; :
 
 
-" Find merge conflict markers
+"hint: <leader>gc for git conflict
 map <leader>gc /\v^[<\|=>]{7}( .*\|$)<CR>
 map <leader>f :find 
 
@@ -472,7 +493,7 @@ vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+"hint: Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 map <c-space> ?
 
@@ -484,24 +505,24 @@ map <silent> <leader><cr> :noh<cr>
 map j gj
 map k gk
 
-" command to switch buffers
+"hint: command to switch buffers
 nnoremap <leader>[   :bp<CR>
 nnoremap <leader>]   :bn<CR>
 inoremap <leader>[   <Esc>:bp<CR>i
 inoremap <leader>]   <Esc>:bn<CR>i
 
-" switch buffers back and forth
+"hint: switch buffers back and forth
 map <leader>k :bn<CR>
 map <leader>j :bp<CR>
 
 
-" Smart way to move between windows
+"hint: Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" splitting window
+"hint: splitting window
 map <C-\> <C-W>v
 map <C-_> <C-W>s
 
@@ -547,13 +568,18 @@ map <leader>cc :botright cope<cr>
 noremap <Leader>cm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 
-"""""""""""""""""""""""""""""""""""""""""
-"""   PLUGIN Settings
-"""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""
+"""   PLUGIN Settings             """
+"""""""""""""""""""""""""""""""""""""
 
 "configure syntastics
 let g:syntastic_enable_highlighting=0
 let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
 
 " NERDTree conf"
@@ -599,15 +625,7 @@ vmap <Leader>a: :Tabularize /:<CR>
 nnoremap <Leader>a :Tabularize /
 vnoremap <Leader>a :Tabularize /
 
-"configure macro
-map <Leader>@ :'<,'>norm! @
 
-"configure Ctags
-set autochdir
-set tags=tags;/
-
-" type g<C-]> to get list  and C-t to come back
-nnoremap <C-]> g<C-]>
 
 "configure tagbar
 nmap <F8>  :Tagbar<CR>
@@ -627,23 +645,8 @@ if executable('ag')
 endif
 
 
-" binding to grep word under cursor
-nnoremap <Leader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
 " random leader settings
 nnoremap <Leader>vim :e ~/.vimrc<CR>
 nnoremap <Leader>sh :e ~/.bash_aliases<CR>
 
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
-map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>ec :e ~/code/
 
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
