@@ -7,12 +7,12 @@ To select new themes (move them to the appropriate directory and) use GNOME Twea
 
 ### For the GTK theme:
 ```ssh
-gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita
 ```
 
 ### For the icon theme:
 ```ssh
-$ gsettings set org.gnome.desktop.interface icon-theme Arc
+$ gsettings set org.gnome.desktop.interface icon-theme Adwaita
 ```
 
 ### Titlebar button order
@@ -22,10 +22,10 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,max
 
 ### Lock screen and background image
 ```sh
-gsettings set org.gnome.desktop.background picture-uri 'file:///home/sam/.local/share/backgrounds/2021-08-10-16-16-28-green_leaf_twig_trees_4527_2560x1600.jpg'
+gsettings set org.gnome.desktop.background picture-uri 'file:///home/sam/envconfig/images/blobs-l.svg'
 ```
 ```sh
-gsettings set org.gnome.desktop.screensaver picture-uri 'file:///home/sam/.local/share/backgrounds/2021-08-10-16-16-28-green_leaf_twig_trees_4527_2560x1600.jpg'
+gsettings set org.gnome.desktop.screensaver picture-uri 'file:///home/sam/envconfig/image/blobs-l.svg'
 ```
 
 ### Disable top left hot corner
