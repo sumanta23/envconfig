@@ -15,6 +15,11 @@ gsettings set org.gnome.desktop.interface gtk-theme Adwaita
 $ gsettings set org.gnome.desktop.interface icon-theme Adwaita
 ```
 
+### prefer Dark Style:
+```ssh
+$ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+```
+
 ### Titlebar button order
 ```ssh
 gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
