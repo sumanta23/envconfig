@@ -22,11 +22,11 @@ Plugin 'honza/vim-snippets'
 "vim editor beautify
 Plugin 'bling/vim-bufferline'
 
+
 "code navigation
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdTree'
 
-"Plugin 'preservim/tagbar'
 
 "code editing
 Plugin 'scrooloose/nerdcommenter'
@@ -126,6 +126,7 @@ hi User4 ctermfg=239 ctermbg=239 guibg=#4e4e4e guifg=#4e4e4e
 set history=700
 
 syntax on
+colorscheme monokai
 
 " Enable filetype plugins
 filetype plugin on
