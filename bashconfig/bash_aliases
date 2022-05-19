@@ -1,6 +1,7 @@
 #!/usr/local/env bash
 
 PS1='\e[32;4m\u@\h:\e[0m\w\e[0m $(__git_ps1 "(%s)")$(evil_git_dirty)\n\$> '
+PROMPT_COMMAND='echo -en "\033]0;$(whoami) | $(pwd|cut -d "/" -f 4-100)\a" '
 
 # Returns "*" if the current git branch is dirty.
 function evil_git_dirty {
