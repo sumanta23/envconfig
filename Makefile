@@ -15,7 +15,7 @@ tmux:
 vim:
 	ln -s -f ${PWD}/vim/vimrc ~/.vimrc
 	mkdir -p ~/.vim/colors
-	ln -s -f ${PWD}/vim/monokai.vim ~/.vim/colors/monokai.vim
+	ln -s -f ${PWD}/vim/molokai.vim ~/.vim/colors/molokai.vim
 	bash ${PWD}/vim/viminstall.sh
 
 screen:
