@@ -68,3 +68,5 @@
     sslVerify = false
 [commit]
     template = /Users/sumanta.nandi/envconfig/git/gitmessage
+[init]
+	defaultBranch = master

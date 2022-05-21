@@ -98,7 +98,6 @@ let g:currentmode={
     \}
 
 set laststatus=2
-set noshowmode
 set statusline=
 set statusline+=%0*\ %{toupper(g:currentmode[mode()])}\  " The current mode
 set statusline+=%0*\ %n\                                 " Buffer number
@@ -152,11 +151,9 @@ vnoremap <C-d> "+d
 
 
 
-" Always show the status line
-set laststatus=2
-set noshowmode
-"set cursorline      //at times annoying to see entire line
-set ttimeoutlen=50
+set laststatus=2    " Always show the status line
+set noshowmode      " show vim status at bottom panel
+set ttimeoutlen=50  " wait for each keystroke of the mapping before aborting it and carrying out the behaviour of the keys typed so far.
 
 if exists('$TMUX')
     "do not set cursorline
@@ -164,11 +161,9 @@ else
     "set cursorline
 endif 
 
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set so=7       " Set 7 lines to the cursor - when moving vertically using j/k
 
-" Turn on the WiLd menu
-set wildmenu
+set wildmenu   " Turn on the WiLd menu,  are used for command line completion
 
 " Ignore compiled files
 set wildignore+=*.o,*~,*.pyc,*.class,*.so,*.swp,*.zip,*/tmp/*
@@ -176,25 +171,19 @@ set wildignore+=*.o,*~,*.pyc,*.class,*.so,*.swp,*.zip,*/tmp/*
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore
 
-"Always show current position
-set ruler
+set ruler    "Always show current position
 
-" Height of the command bar
-set showcmd
+set showcmd   " Height of the command bar
 set cmdheight=1
 
-" A buffer becomes hidden when it is abandoned
-set hid
+set hid      " A buffer becomes hidden when it is abandoned
 
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
+set backspace=eol,start,indent   " Configure backspace so it acts as it should act
+set whichwrap+=<,>,h,l      " Automatically wrap left and right
 
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases 
-set smartcase
+set incsearch    " Makes search act like search in modern browsers
+set ignorecase    " Ignore case when searching, Also used when searching in the tags
+set smartcase     " When searching try to be smart about cases 
 
 " Highlight search results
 set hlsearch
@@ -202,27 +191,18 @@ hi Search cterm=NONE ctermfg=RED ctermbg=NONE
 hi Error cterm=NONE ctermfg=BLUE ctermbg=NONE
 hi Folded cterm=NONE ctermfg=YELLOW ctermbg=NONE
 
-" Makes search act like search in modern browsers
-set incsearch
 
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
+set lazyredraw       " Don't redraw while executing macros (good performance config)
 
-set updatetime=300 " Reduce time for highlighting other references
-set redrawtime=10000 " Allow more time for loading syntax on large files
+set updatetime=300      " Reduce time for highlighting other references
+set redrawtime=10000    " Allow more time for loading syntax on large files
 
-" For regular expressions turn magic on
-set magic
+set magic   " For regular expressions turn magic on
 
-set showmode
+set showmatch    " Show matching brackets when text indicator is over them
+set mat=2        " How many tenths of a second to blink when matching brackets
 
-" Show matching brackets when text indicator is over them
-set showmatch
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-"dont show fooking tab bar on top
-set showtabline=0
+set showtabline=0   "dont show fooking tab bar on top
 
 " vim folding settings
 set foldenable
@@ -248,9 +228,9 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -260,24 +240,13 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-
-
-let g:solarized_termcolors=256
-
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 
 
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+set encoding=utf8               " Set utf8 as standard encoding and en_US as the standard language
 
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
+set ffs=unix,dos,mac            " Use Unix as the standard file type
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
@@ -288,8 +257,7 @@ set noswapfile
 set path+=$PWD/**                      " Search recursively for file related tasks
 
 
-" Set to auto read when a file is changed from the outside
-set autoread
+set autoread                           " Set to auto read when a file is changed from the outside
 
 "change swap file location
 set directory=~/.vim/.vimtemp/swaps//
@@ -319,7 +287,6 @@ call matchadd('ColorColumn', '\%100v', 100)
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>ec :e ~/code/
 
 " disable arrow keys
 noremap <Up> <NOP>
@@ -466,12 +433,6 @@ inoremap <Leader>ss <ESC>V :FixWhitespace<CR>i
 
 map <Leader>ws :call DeleteTrailingWS()<CR>
 
-"autocmd BufWrite *.py :call DeleteTrailingWS()
-"autocmd BufWrite *.coffee :call DeleteTrailingWS()
-"autocmd BufWrite *.js :call StripTrailingWhitespace()
-"autocmd BufWrite *.java :call DeleteTrailingWS()
-
-
 " map toggle fold to zz
 map zz za
 
@@ -614,7 +575,7 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bin|dist|git|build|
 
 
 "open gblame
-nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gb :Git blame<CR>
 map <leader>b :ls<CR>:b 
 
 "configure Tabular
@@ -639,10 +600,3 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-
-" random leader settings
-nnoremap <Leader>vim :e ~/.vimrc<CR>
-nnoremap <Leader>sh :e ~/.bash_aliases<CR>
-
-
