@@ -1,0 +1,2 @@
+tmux new-session -d -s dev
+tmux splitw -t dev -h -p 20
