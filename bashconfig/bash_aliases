@@ -17,11 +17,10 @@ alias vi='vim'
 export EDITOR=vim
 export SW_HOME="$HOME/sw"
 #Set env variables
-#export JAVA_HOME=$SW_HOME/jdk1.8.0_45
-#export JAVA_HOME=$SW_HOME/jdk-9
+export JAVA_HOME=$SW_HOME/jdk-18.0.2.1.jdk/Contents/Home/
 export M2_HOME=$SW_HOME/apache-maven-3.5.3
 export ANT_HOME=$SW_HOME/apache-ant-1.9.4
-export GRADLE_HOME=$SW_HOME/gradle-2.3
+export GRADLE_HOME=$SW_HOME/gradle-7.5.1
 export SUBLIME_HOME=$SW_HOME/sublime_test_3
 PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin:$SUBLIME_HOME:$PATH
 
