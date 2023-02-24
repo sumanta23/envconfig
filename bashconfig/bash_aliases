@@ -25,11 +25,14 @@ export SUBLIME_HOME=$SW_HOME/sublime_test_3
 PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$GRADLE_HOME/bin:$SUBLIME_HOME:$PATH
 
 #  source git auto-complete
-if [ -f ~/.git-prompt.sh ]; then
+if [ -f ~/envconfig/git/git-prompt.sh ]; then
     . ~/envconfig/git/git-prompt.sh
 fi
 if [ -f /usr/share/git/git-prompt.sh ]; then
     source /usr/share/git/git-prompt.sh
+fi
+if [ -f ~/envconfig/git/git-completion.bash ]; then
+  . ~/envconfig/git/git-completion.bash
 fi
 
 # install nvm in path
