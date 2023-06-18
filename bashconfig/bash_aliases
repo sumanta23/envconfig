@@ -11,6 +11,8 @@ if [ -f ~/.bash_machine ]; then
     . ~/.bash_machine
 fi
 
+HISTCONTROL=ignoreboth
+
 export TERM=xterm-256color
 alias vi='vim'
 
@@ -49,6 +51,13 @@ alias findtxt='grep -rnw . -e'
 alias gstd="git stash show -p"
 alias monitor='xrandr --output VGA1 --auto --right-of LVDS1'
 alias primary='xrandr --output VGA1 --off'
+alias pcurl="curl -x http://admin:password@127.0.0.1:3128"
+alias lk="cd ~/repo/lima/"
+
+#set kubectl aliases
+alias ki="kubectl get pods,deployments,sts,ds,hpa,svc,replicaset,pvc,cm"
+alias ks="kubectl get pv,sc,ingress"
+source <(kubectl completion bash)
 
 #battery Status
 alias power='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"'

@@ -15,18 +15,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-"code snippets
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'honza/vim-snippets'
-
 "vim editor beautify
-Plugin 'bling/vim-bufferline'
-
+"Plugin 'bling/vim-bufferline'
 
 "code navigation
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdTree'
 
+"tmux integration
+Plugin 'christoomey/vim-tmux-navigator'
 
 "code editing
 Plugin 'scrooloose/nerdcommenter'
@@ -156,12 +153,6 @@ vnoremap <C-d> "+d
 
 set noshowmode      " show vim status at bottom panel
 set ttimeoutlen=50  " wait for each keystroke of the mapping before aborting it and carrying out the behaviour of the keys typed so far.
-
-if exists('$TMUX')
-    "do not set cursorline
-else 
-    "set cursorline
-endif 
 
 set so=7       " Set 7 lines to the cursor - when moving vertically using j/k
 
