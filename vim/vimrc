@@ -19,11 +19,11 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'bling/vim-bufferline'
 
 "code navigation
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdTree'
+Plugin 'ctrlpvim/ctrlp.vim'     " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+Plugin 'scrooloose/nerdTree'    " The NERDTree is a file system explorer for the Vim editor.
 
 "tmux integration
-Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-navigator'   " tmux intergration for better navigation inside tmux
 
 "code editing
 Plugin 'scrooloose/nerdcommenter'
@@ -36,8 +36,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'mbbill/undotree'
 
 "repository plugin
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'      " Vim plugin for Git.
+Plugin 'airblade/vim-gitgutter'  " Shows signs for added, modified, and removed lines.
 
 
 "javascript
@@ -391,19 +391,9 @@ let g:mapleader = ","
 
 "hint: Fast quit buffer: <leader>x
 nmap <leader>x :Bclose<cr>
-"hint: Close all the buffers: <leader>cb
-map <leader>cb :1,1000 bd!<cr>
-
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
-"hint: Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap mj mz:m+<cr>`z
-nmap mk mz:m-2<cr>`z
-vmap mj :m'>+<cr>`<my`>mzgv`yo`z
-vmap mk :m'<-2<cr>`>my`<mzgv`yo`z
-
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
@@ -449,9 +439,7 @@ vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
 
-"hint: Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+"hint: Map / (search) and ? (backwards search)
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -470,17 +458,6 @@ inoremap <leader>]   <Esc>:bn<CR>i
 "hint: switch buffers back and forth
 map <leader>k :bn<CR>
 map <leader>j :bp<CR>
-
-
-"hint: Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-"hint: splitting window
-map <C-\> <C-W>v
-map <C-_> <C-W>s
 
 
 " Specify the behavior when switching between buffers 
