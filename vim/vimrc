@@ -2,7 +2,6 @@
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -39,7 +38,6 @@ Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-fugitive'      " Vim plugin for Git.
 Plugin 'airblade/vim-gitgutter'  " Shows signs for added, modified, and removed lines.
 
-
 "javascript
 Plugin 'elzr/vim-json'
 Plugin 'eslint/eslint'
@@ -47,17 +45,11 @@ Plugin 'yuezk/vim-js'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-
-
-
 """"""""""""""""""""""""""""""""""""""""""
 "=> infect pathogen
 """"""""""""""""""""""""""""""""""""""""""
 
-" Setup Pathogen to manage your plugins
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
+" Setup Pathogen to manage your plugins see install script
 call pathogen#infect()
 
 
@@ -144,18 +136,10 @@ if system('uname -s') == "Darwin\n"
 else
   set clipboard=unnamedplus "Linux
 endif
-inoremap <C-v> <ESC>"+pa
-vnoremap <C-c> "+y
-vnoremap <C-d> "+d
-
-
-
 
 set noshowmode      " show vim status at bottom panel
 set ttimeoutlen=50  " wait for each keystroke of the mapping before aborting it and carrying out the behaviour of the keys typed so far.
-
 set so=7       " Set 7 lines to the cursor - when moving vertically using j/k
-
 set wildmenu   " Turn on the WiLd menu,  are used for command line completion
 
 " Ignore compiled files
@@ -165,12 +149,9 @@ set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatib
 set virtualedit=onemore
 
 set ruler    "Always show current position
-
 set showcmd   " Height of the command bar
-set cmdheight=1
-
+set cmdheight=1 " set the command bar height
 set hid      " A buffer becomes hidden when it is abandoned
-
 set backspace=eol,start,indent   " Configure backspace so it acts as it should act
 set whichwrap+=<,>,h,l      " Automatically wrap left and right
 
@@ -186,7 +167,6 @@ hi Folded cterm=NONE ctermfg=YELLOW ctermbg=NONE
 
 
 set lazyredraw       " Don't redraw while executing macros (good performance config)
-
 set updatetime=300      " Reduce time for highlighting other references
 set redrawtime=10000    " Allow more time for loading syntax on large files
 
@@ -293,9 +273,7 @@ map <Leader>@ :'<,'>norm! @
 "configure Ctags
 set autochdir
 set tags=tags;/
-
-" type g<C-]> to get list  and C-t to come back
-nnoremap <C-]> g<C-]>
+nnoremap <C-]> g<C-]>    " type g<C-]> to get list  and C-t to come back
 
 " binding to grep word under cursor
 nnoremap <Leader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -379,10 +357,8 @@ augroup END
 " => Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
-
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -416,13 +392,8 @@ inoremap <Leader>ss <ESC>V :FixWhitespace<CR>i
 
 map <Leader>ws :call DeleteTrailingWS()<CR>
 
-" map toggle fold to zz
-map zz za
-
-
 " map ; to : save shift
 nnoremap ; :
-
 
 "hint: <leader>gc for git conflict
 map <leader>gc /\v^[<\|=>]{7}( .*\|$)<CR>
@@ -438,12 +409,10 @@ vnoremap > >gv
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
-
 "hint: Map / (search) and ? (backwards search)
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
-
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
@@ -454,11 +423,6 @@ nnoremap <leader>[   :bp<CR>
 nnoremap <leader>]   :bn<CR>
 inoremap <leader>[   <Esc>:bp<CR>i
 inoremap <leader>]   <Esc>:bn<CR>i
-
-"hint: switch buffers back and forth
-map <leader>k :bn<CR>
-map <leader>j :bp<CR>
-
 
 " Specify the behavior when switching between buffers 
 try
@@ -475,27 +439,6 @@ autocmd BufReadPost *
 
 " Remember info about open buffers on close
 "set viminfo^=%
-
-
-
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<CR>
-
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-map <leader>cc :botright cope<cr>
-
-
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>cm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -556,7 +499,6 @@ nmap <Leader>a: :Tabularize /:<CR>
 vmap <Leader>a: :Tabularize /:<CR>
 nnoremap <Leader>a :Tabularize /
 vnoremap <Leader>a :Tabularize /
-
 
 
 " The Silver Searcher
