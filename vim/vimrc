@@ -27,7 +27,7 @@ Plugin 'christoomey/vim-tmux-navigator'   " tmux intergration for better navigat
 "code editing
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'dense-analysis/ale'    " syntastics replacement
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
@@ -93,7 +93,6 @@ set statusline+=%0*\ %n\                                 " Buffer number
 set statusline+=%1*\ %<%F%m%r%h%w\                       " File path, modified, readonly, helpfile, preview
 set statusline+=%3*│                                     " Separator
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%=                                       " Right Side
 set statusline+=%2*\ %Y\                                 " FileType
@@ -139,7 +138,7 @@ endif
 
 set noshowmode      " show vim status at bottom panel
 set ttimeoutlen=50  " wait for each keystroke of the mapping before aborting it and carrying out the behaviour of the keys typed so far.
-set so=7       " Set 7 lines to the cursor - when moving vertically using j/k
+set so=5       " Set 5 lines to the cursor - when moving vertically using j/k
 set wildmenu   " Turn on the WiLd menu,  are used for command line completion
 
 " Ignore compiled files
@@ -411,8 +410,7 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 
 "hint: Map / (search) and ? (backwards search)
 
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+" Disable highlight when :noh<cr> is pressed
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
@@ -447,24 +445,12 @@ noremap <Leader>cm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 """""""""""""""""""""""""""""""""""""
 """   PLUGIN Settings             """
 """""""""""""""""""""""""""""""""""""
-
-"configure syntastics
-let g:syntastic_enable_highlighting=1
-let g:syntastic_enable_signs=1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_echo_current_error = 1
-let g:syntastic_id_checkers=1
-let g:syntastic_stl_format = "[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]"
-
-"eslint for syntastic
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_error_symbol = "✗"
-
+"Ale
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
 
 " NERDTree conf"
 map <C-n> :NERDTreeToggle<CR>
