@@ -270,7 +270,7 @@ noremap <Right> <NOP>
 map <Leader>@ :'<,'>norm! @
 
 "configure Ctags
-set autochdir
+"set autochdir
 set tags=tags;/
 nnoremap <C-]> g<C-]>    " type g<C-]> to get list  and C-t to come back
 

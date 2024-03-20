@@ -46,7 +46,7 @@ log.txt
 __pycache__/
 *.py[cod]
 *$py.class
-
+.venv
 .Python
 env/
 build/

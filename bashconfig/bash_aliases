@@ -3,6 +3,8 @@
 PS1='\e[32;4m\u@\h:\e[0m\w\e[0m $(__git_ps1 "(%s)")$(evil_git_dirty)\n\$> '
 PROMPT_COMMAND='echo -en "\033]0;$(whoami) | $(pwd|cut -d "/" -f 4-100)\a" '
 
+export LSCOLORS=gxfxcxdxbxegedabagacad
+
 # Returns "*" if the current git branch is dirty.
 function evil_git_dirty {
       [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "⚡"
@@ -71,7 +73,16 @@ alias perfr='sudo perf report --sort pid'
 alias flame='sudo perf script | stackcollapse-perf.pl | flamegraph.pl'
 
 #venv activate
-alias venv='source .venv/bin/activate'
+function pvenv(){
+  if [ -f .venv/bin/activate ]; then
+    source .venv/bin/activate
+  else
+    echo "creating venv"
+    python3 -m venv .venv
+  fi
+}
+alias venv=pvenv
+#alias venv='source .venv/bin/activate'
 
 # added by Miniconda2 installer
 if [ -x $HOME/miniconda2/bin ]; then
